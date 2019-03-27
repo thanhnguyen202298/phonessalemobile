@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemImageText;
+import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
 import com.aln.phonesaleschain.utilities.Constants;
 
 public class PresentActivity extends AppCompatActivity {
@@ -29,5 +30,13 @@ public class PresentActivity extends AppCompatActivity {
         String s = getIntent().getStringExtra(Constants.KEY_CONTENT);
         TextView txt = findViewById(R.id.contenshow);
         txt.setText(s);
+
+        s=PreferenceUtils.getContent(Constants.KEY_TEL);
+        telview.setLabel(s);
+
+        s=PreferenceUtils.getContent(Constants.KEY_COMADDRESS);
+        addressview.setLabel(s);
+
+
     }
 }
