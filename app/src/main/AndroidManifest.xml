@@ -39,7 +39,6 @@
         <activity
             android:name=".screen.main.testmenu"
             android:label="@string/title_activity_main2"></activity>
-        <activity android:name=".screen.newsspaper.NewspaperActivity22"></activity>
     </application>
 
 </manifest>
