@@ -74,10 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent it = new Intent();
         switch (v.getId()){
             case R.id.menuitem1:
-                Intent it = new Intent(this,PresentActivity.class);
+                it = new Intent(this,PresentActivity.class);
                 startActivity(it);break;
+            case R.id.menuitem2:
+                it = new Intent(this,PresentActivity.class);
+                startActivity(it);break;
+
         }
 
     }
