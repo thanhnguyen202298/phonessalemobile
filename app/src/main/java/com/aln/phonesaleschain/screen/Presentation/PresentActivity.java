@@ -23,5 +23,7 @@ public class PresentActivity extends AppCompatActivity {
         addressview = new ItemImageText(this,R.id.address,null);
         telview = new ItemImageText(this,R.id.tel,null);
         telview.setIdDrawerable(R.drawable.ic_call_navi_24dp);
+
+
     }
 }
