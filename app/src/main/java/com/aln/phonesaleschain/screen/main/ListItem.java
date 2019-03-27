@@ -12,7 +12,7 @@ import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
 public class ListItem extends AppCompatActivity {
 
     private FragmentManager frgManager;
-    ProductActivity fragList;
+    private ProductActivity fragList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class ListItem extends AppCompatActivity {
     private void loadFragment() {
         FragmentTransaction tf = frgManager.beginTransaction();
         tf.disallowAddToBackStack();
-        tf.add(R.id.newsFrame, fragList);
+        tf.add(R.id.layoutlist, fragList);
         tf.commit();
     }
 
