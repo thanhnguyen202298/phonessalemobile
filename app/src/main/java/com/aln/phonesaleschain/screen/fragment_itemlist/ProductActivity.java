@@ -1,8 +1,7 @@
-package com.aln.phonesaleschain.screen.newsspaper;
+package com.aln.phonesaleschain.screen.fragment_itemlist;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
 import com.aln.phonesaleschain.customview.ItemVariable;
+import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class ProductActivity extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private int mParam2;
-    private ViewDataBinding fragNews;
+    private ActivityProductBinding fragNews;
 
     private OnFragmentInteractionListener mListener;
 
