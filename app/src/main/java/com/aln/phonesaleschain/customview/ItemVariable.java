@@ -15,7 +15,7 @@ public class ItemVariable {
     public String amount = "";
 
     public String getLabel() {
-        return label + " " + amount;
+        return label + "\n" + amount;
     }
 
     public void ClickMe(View view) {
