@@ -1,6 +1,7 @@
 package com.aln.phonesaleschain.screen.fragment_itemlist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,12 +9,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
 import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.databinding.ActivityProductBinding;
+import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
+import com.aln.phonesaleschain.model.UserInfo;
+import com.aln.phonesaleschain.model.order.OrderMaster;
+import com.aln.phonesaleschain.utilities.Constants;
+import com.aln.phonesaleschain.utilities.UtilBasic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +43,7 @@ public class ProductActivity extends Fragment {
     private String mParam1;
     private int mParam2;
     private ActivityProductBinding fragNews;
+    OrderMaster master;
 
     private OnFragmentInteractionListener mListener;
 
@@ -81,40 +89,30 @@ public class ProductActivity extends Fragment {
 
     private void initialize(){
         MyAdapter myAdapter = new MyAdapter(this.getContext(),R.layout.item_vertlarg2, 2,BR.item, mParam2);
-//        fragNews.mynews.setHasFixedSize(true);
-//        fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
-//        fragNews.mynews.setAdapter(myAdapter);
+        fragNews.mynews.setHasFixedSize(true);
+        fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
+        fragNews.mynews.setAdapter(myAdapter);
 
-//        fragNews.flabCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                try {
-//                    if (!master.donHangChiTiets.isEmpty()) {
-//                        UserInfo user = UtilBasic.getGs().fromJson(PreferenceUtils.getUser(),UserInfo.class);
-//                        master.diaChiGiao = user.DiaChi;
-//                        if (mylys.size() > 0) {
-//                            master.shopId = mylys.get(0).MaNguoiDung;
-//                            master.shopName = mylys.get(0).TenNguoiDung;
-//                            master.shopPhone = mylys.get(0).SoDienThoai;
-//                        } else {
-//                            master.shopId = "-1";
-//                            master.shopName = "Thành Gas";
-//                            master.shopPhone = "0123456789";
-//                        }
-//                        String obj = UtilBasic.ObjectToJson(master);
-//                        Intent cartIntent = new Intent(SanPhamActivity.this, OrderDetailActivity.class);
-//                        cartIntent.putExtra(Constants.OrderObj, obj);
-//                        cartIntent.putExtra(Constants.OrderRequest, Constants.NewOrder);
-//                        startActivity(cartIntent);
-//                    } else {
-//                        Toast.makeText(SanPhamActivity.this, "Chưa có sản phẩm", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                } catch (Exception e) {
-//                    Toast.makeText(SanPhamActivity.this, e.getMessage() + "debug", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        fragNews.fabCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    if (!master.detailslist.isEmpty()) {
+                        UserInfo user = UtilBasic.getGs().fromJson(PreferenceUtils.getUser(),UserInfo.class);
+                        String obj = UtilBasic.ObjectToJson(master);
+                        Intent cartIntent = new Intent(getContext(), Fragment.class);
+                        cartIntent.putExtra(Constants.OrderObj, obj);
+                        cartIntent.putExtra(Constants.OrderRequest, Constants.NewOrder);
+                        startActivity(cartIntent);
+                    } else {
+                        Toast.makeText(getContext(), "Chưa có sản phẩm", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), e.getMessage() + "debug", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
     private void loadData(){
