@@ -294,7 +294,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:hint="1000,000,000"
-                android:text="@{orderPmaster.amount}"
+                android:text="@{orderPmaster.getAmount()}"
                 android:textAlignment="textEnd"
                 android:textColor="@color/orange"
                 android:textSize="25sp"
