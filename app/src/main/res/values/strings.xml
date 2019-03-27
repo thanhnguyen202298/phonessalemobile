@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">test-chain</string>
+    <string name="title_activity_main2">test menu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="Label">Label</string>
+    <string name="them">Thêm</string>
+    <string name="home_Label">Trang Chủ</string>
+    <string name="schadule_Label">Lịch Hẹn</string>
+    <string name="promotion_label">Khuyến Mãi</string>
+    <string name="present_label">Giới Thiệu</string>
+    <string name="products_menu">Sản phẩm</string>
+    <string name="news_menu">Tin tức</string>
+    <string name="chat_menu">Chat</string>
+    <string name="account_menu">Tài Khoản</string>
+    <string name="notice_menu">Thông báo</string>
+    <string name="branch_menu">Chi nhánh</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

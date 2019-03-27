@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#e43f3f</color>
+    <color name="primary_dark">#E12929</color>
+    <color name="primary_darker">#CC1D1D</color>
+    <color name="accent">#FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#4b4545</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#aaaaaa</color>
+    <color name="blankiron">#eff3f4</color>
+    <color name="iron">#bbcbd2</color>
+    <color name="navi">#4ea7de</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#ff7700</color>
+    <color name="finish">#42bf19</color>
+    <color name="Delivery">#76201a</color>
+    <color name="inProcess">#6e5c5a</color>
+    <color name="whiteorion">#fafae1</color>
+    <color name="colorPrimary">#7b4bff</color>
+    <color name="colorPrimaryDark">#6539ba</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="bgBottomNavigation">#ffb000</color>
+    <color name="title">#1f497d</color>
+
+</resources>

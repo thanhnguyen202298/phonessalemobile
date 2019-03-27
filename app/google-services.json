@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "449140015022",
+    "firebase_url": "https://phonesaleschain-7d779.firebaseio.com",
+    "project_id": "phonesaleschain-7d779",
+    "storage_bucket": "phonesaleschain-7d779.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449140015022:android:346e11acde522abb",
+        "android_client_info": {
+          "package_name": "com.aln.phonesaleschain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449140015022-rnhjamrc3h7k8vi16b2go5edgkld4i3c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aln.phonesaleschain",
+            "certificate_hash": "8fd08792fd2d17dd0da823b9af6fcfb510a069d7"
+          }
+        },
+        {
+          "client_id": "449140015022-o68iismunoaj6a48euma3vudp47nct8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbxyGmvRdSPQEZUTY9371b-JZPBRgBwy0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449140015022-o68iismunoaj6a48euma3vudp47nct8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

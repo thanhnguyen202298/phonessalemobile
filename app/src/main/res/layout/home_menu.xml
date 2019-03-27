@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.FitWindowsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homemenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="0.6">
+
+    <include layout="@layout/mainpagemeu" />
+
+    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/menuitemcenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scaleX="1.8"
+        android:scaleY="1.8"
+        android:src="@drawable/ic_one8080" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/them"
+        android:textColor="@color/primary"
+        android:textSize="30dp"
+
+        android:textStyle="bold" />
+
+</android.support.v7.widget.FitWindowsFrameLayout>
