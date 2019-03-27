@@ -21,21 +21,21 @@ public class PreferenceUtils {
     }
 
     public static boolean savePassword(String password) {
-        saveContent(Constants.KIMNGUYEN_KEY_PASSWORD, password);
+        saveContent(Constants.KEY_PASSWORD, password);
         return true;
     }
 
     public static String getPassword() {
-        return getContent(Constants.KIMNGUYEN_KEY_PASSWORD);
+        return getContent(Constants.KEY_PASSWORD);
     }
 
     public static boolean saveUserName(String username) {
-        saveContent(Constants.KIMNGUYEN_KEY_TEN, username);
+        saveContent(Constants.KEY_TEN, username);
         return true;
     }
 
     public static String getUserName() {
-        return getContent(Constants.KIMNGUYEN_KEY_TEN);
+        return getContent(Constants.KEY_TEN);
     }
 
     public static boolean saveEmployeeCode(String employeeCode) {

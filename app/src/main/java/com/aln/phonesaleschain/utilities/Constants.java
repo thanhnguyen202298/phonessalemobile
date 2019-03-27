@@ -1,9 +1,11 @@
 package com.aln.phonesaleschain.utilities;
 
 public class Constants {
-    public static String app = "phơnsale-";
-    public static String KEY_USER = "user";
-    public static String KIMNGUYEN_KEY_PASSWORD = app +"password";
-    public static String KEY_MA = "usercode";
-    public static String KIMNGUYEN_KEY_TEN = app +"username";
+    public final static String app = "phơnsale-";
+    public final static String KEY_USER = "user";
+    public final static String KEY_PASSWORD = "password";
+    public final static String KEY_MA = "usercode";
+    public final static String KEY_TEN = "username";
+    public final static String KEY_CONTENT = "Content";
+
 }
