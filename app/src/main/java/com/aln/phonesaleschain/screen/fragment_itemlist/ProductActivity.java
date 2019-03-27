@@ -56,7 +56,7 @@ public class ProductActivity extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param fragname Parameter 1.
-     * @param orient Parameter 2.
+     * @param orient   Parameter 2.
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -82,13 +82,13 @@ public class ProductActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragNews = DataBindingUtil.inflate(inflater,R.layout.activity_product,container,false);
+        fragNews = DataBindingUtil.inflate(inflater, R.layout.activity_product, container, false);
         initialize();
         return fragNews.getRoot();
     }
 
-    private void initialize(){
-        MyAdapter myAdapter = new MyAdapter(this.getContext(),R.layout.item_vertlarg2, 2,BR.item, mParam2);
+    private void initialize() {
+        MyAdapter myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
@@ -98,7 +98,7 @@ public class ProductActivity extends Fragment {
             public void onClick(View v) {
                 try {
                     if (!master.detailslist.isEmpty()) {
-                        
+
                     } else {
                         Toast.makeText(getContext(), "Chưa có sản phẩm", Toast.LENGTH_SHORT).show();
                     }
@@ -111,15 +111,16 @@ public class ProductActivity extends Fragment {
 
     }
 
-    private void loadData(){
+    private void loadData() {
         List<ItemVariable> data = new ArrayList<>();
-        if(mParam1.toLowerCase().equals("news")){
+        if (mParam1.toLowerCase().equals("news")) {
             //loading news
-        }else {
-            //loading another
+        } else if (mParam1.toLowerCase().equals("cates")) {
+            //loading cates
         }
         fragNews.setNewsPaperlist(data);
     }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
