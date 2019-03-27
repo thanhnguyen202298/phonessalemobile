@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.aln.phonesaleschain.R;
-import com.aln.phonesaleschain.screen.newsspaper.ProductActivity;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
 
 public class HomePage extends AppCompatActivity {
     private ProductActivity newsFrag, cateFrag;
