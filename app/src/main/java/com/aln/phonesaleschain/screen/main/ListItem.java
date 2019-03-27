@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
+import com.aln.phonesaleschain.utilities.Constants;
 
 public class ListItem extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class ListItem extends AppCompatActivity {
     }
 
     private String getScreenName() {
-        String it = getIntent().getStringExtra("Screen");
+        String it = getIntent().getStringExtra(Constants.KEY_SCREEN);
         return it == null ? "news" : it;
     }
 }

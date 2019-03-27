@@ -10,5 +10,6 @@ public class Constants {
     public final static String KEY_COMPAN = "namecomp";
     public final static String KEY_COMADDRESS = "address";
     public final static String KEY_TEL = "TEL";
+    public final static String KEY_SCREEN = "SCREEN";
 
 }

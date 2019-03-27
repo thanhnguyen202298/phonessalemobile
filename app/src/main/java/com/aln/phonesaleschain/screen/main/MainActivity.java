@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemImageText;
 import com.aln.phonesaleschain.screen.Presentation.PresentActivity;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
+import com.aln.phonesaleschain.screen.homepage.HomePage;
+import com.aln.phonesaleschain.utilities.Constants;
 import com.aln.phonesaleschain.utilities.ViewDlg;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -80,9 +83,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 it = new Intent(this,PresentActivity.class);
                 startActivity(it);break;
             case R.id.menuitem2:
-                it = new Intent(this,PresentActivity.class);
+                it = new Intent(this,ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN,"prom");
+                startActivity(it);break;
+            case R.id.menuitem3:
+                it = new Intent(this,HomePage.class);
                 startActivity(it);break;
 
+            case R.id.menuitem4:
+                it = new Intent(this,ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN,"schadule");
+                startActivity(it);break;
         }
 
     }
