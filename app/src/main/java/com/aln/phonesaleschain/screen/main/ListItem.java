@@ -1,5 +1,6 @@
 package com.aln.phonesaleschain.screen.main;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -7,13 +8,14 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
 import com.aln.phonesaleschain.utilities.Constants;
 
 public class ListItem extends AppCompatActivity {
 
     private FragmentManager frgManager;
-    private ProductActivity fragList;
+    private Fragment fragList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,9 @@ public class ListItem extends AppCompatActivity {
         setContentView(R.layout.activity_list_item);
 
         frgManager = getSupportFragmentManager();
+        if(getScreenName().equals("acco"))
+            fragList = new AccountFragment();
+        else
         fragList = ProductActivity.newInstance(getScreenName(), GridLayoutManager.VERTICAL);
 
         loadFragment();

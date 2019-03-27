@@ -61,16 +61,18 @@ public class ViewDlg implements View.OnClickListener {
         Intent it = new Intent();
         switch (v.getId()) {
             case R.id.product:
-                it = new Intent(ctx, PresentActivity.class);
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "prod");
                 ctx.startActivity(it);
                 break;
             case R.id.news:
                 it = new Intent(ctx, ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN, "prom");
+                it.putExtra(Constants.KEY_SCREEN, "news");
                 ctx.startActivity(it);
                 break;
             case R.id.account:
-                it = new Intent(ctx, HomePage.class);
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "acco");
                 ctx.startActivity(it);
                 break;
 
@@ -82,7 +84,7 @@ public class ViewDlg implements View.OnClickListener {
 
             case R.id.notice:
                 it = new Intent(ctx, ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN, "notice");
+                it.putExtra(Constants.KEY_SCREEN, "notic");
                 ctx.startActivity(it);
                 break;
 
