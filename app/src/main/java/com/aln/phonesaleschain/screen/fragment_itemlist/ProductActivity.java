@@ -115,7 +115,9 @@ public class ProductActivity extends Fragment {
         List<ItemVariable> data = new ArrayList<>();
         if (mParam1.toLowerCase().equals("news")) {
             //loading news
-        } else if (mParam1.toLowerCase().equals("cates")) {
+        } else if (mParam1.toLowerCase().equals("cate")) {
+            //loading cates
+        } else if (mParam1.toLowerCase().equals("prod")) {
             //loading cates
         }
         fragNews.setNewsPaperlist(data);

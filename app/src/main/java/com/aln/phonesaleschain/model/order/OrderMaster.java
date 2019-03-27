@@ -27,17 +27,20 @@ public class OrderMaster {
     public boolean synchronizedUser;
     public boolean synchronizedShop;
     public String addresShip;
-//
+    //
     public List<OrderDetail> detailslist;
 
     public OrderMaster() {
-
-
     }
-    public void setDonHangChiTiets(HashMap<Integer,OrderDetail> deetailist) {
 
-        for (Integer i :deetailist.keySet()
-             ) {
+    public String getAmount() {
+        return amount + "";
+    }
+
+    public void setDonHangChiTiets(HashMap<Integer, OrderDetail> deetailist) {
+
+        for (Integer i : deetailist.keySet()
+                ) {
             detailslist.add(deetailist.get(i));
         }
     }
