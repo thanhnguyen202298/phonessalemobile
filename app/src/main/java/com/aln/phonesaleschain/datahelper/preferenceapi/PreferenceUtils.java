@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.aln.phonesaleschain.utilities.Constants;
+import com.google.android.gms.common.util.SharedPreferencesUtils;
 
 public class PreferenceUtils {
     public PreferenceUtils() {
@@ -15,7 +16,7 @@ public class PreferenceUtils {
 
     public static SharedPreferences getSharesPrefer(Context context) {
         if (prefs == null)
-            prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            prefs = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         return prefs;
     }
 
