@@ -65,9 +65,20 @@ public class ViewDlg implements View.OnClickListener {
                 it.putExtra(Constants.KEY_SCREEN, "prod");
                 ctx.startActivity(it);
                 break;
+            case R.id.notice:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "notic");
+                ctx.startActivity(it);
+                break;
+
             case R.id.news:
                 it = new Intent(ctx, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "news");
+                ctx.startActivity(it);
+                break;
+            case R.id.branchs:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "cate");
                 ctx.startActivity(it);
                 break;
             case R.id.account:
@@ -75,24 +86,13 @@ public class ViewDlg implements View.OnClickListener {
                 it.putExtra(Constants.KEY_SCREEN, "acco");
                 ctx.startActivity(it);
                 break;
+//
+//            case R.id.chat:
+//                it = new Intent(ctx, ListItem.class);
+//                it.putExtra(Constants.KEY_SCREEN, "chat");
+//                ctx.startActivity(it);
+//                break;
 
-            case R.id.chat:
-                it = new Intent(ctx, ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN, "chat");
-                ctx.startActivity(it);
-                break;
-
-            case R.id.notice:
-                it = new Intent(ctx, ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN, "notic");
-                ctx.startActivity(it);
-                break;
-
-            case R.id.branchs:
-                it = new Intent(ctx, ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN, "cate");
-                ctx.startActivity(it);
-                break;
         }
     }
 }

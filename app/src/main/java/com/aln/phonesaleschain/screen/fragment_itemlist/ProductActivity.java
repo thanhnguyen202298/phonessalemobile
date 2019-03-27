@@ -108,7 +108,6 @@ public class ProductActivity extends Fragment {
                 }
             }
         });
-
     }
 
     private void loadData() {
@@ -118,6 +117,8 @@ public class ProductActivity extends Fragment {
         } else if (mParam1.toLowerCase().equals("cate")) {
             //loading cates
         } else if (mParam1.toLowerCase().equals("prod")) {
+            //loading cates
+        }else if (mParam1.toLowerCase().equals("notic")) {
             //loading cates
         }
         fragNews.setNewsPaperlist(data);
