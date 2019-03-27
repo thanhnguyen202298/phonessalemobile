@@ -98,12 +98,7 @@ public class ProductActivity extends Fragment {
             public void onClick(View v) {
                 try {
                     if (!master.detailslist.isEmpty()) {
-                        UserInfo user = UtilBasic.getGs().fromJson(PreferenceUtils.getUser(),UserInfo.class);
-                        String obj = UtilBasic.ObjectToJson(master);
-                        Intent cartIntent = new Intent(getContext(), Fragment.class);
-                        cartIntent.putExtra(Constants.OrderObj, obj);
-                        cartIntent.putExtra(Constants.OrderRequest, Constants.NewOrder);
-                        startActivity(cartIntent);
+                        
                     } else {
                         Toast.makeText(getContext(), "Chưa có sản phẩm", Toast.LENGTH_SHORT).show();
                     }
@@ -115,6 +110,7 @@ public class ProductActivity extends Fragment {
         });
 
     }
+
     private void loadData(){
         List<ItemVariable> data = new ArrayList<>();
         if(mParam1.toLowerCase().equals("news")){
@@ -122,7 +118,7 @@ public class ProductActivity extends Fragment {
         }else {
             //loading another
         }
-//        fragNews.setNewsPaperlist(data);
+        fragNews.setNewsPaperlist(data);
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
