@@ -37,6 +37,5 @@ public class PresentActivity extends AppCompatActivity {
         s=PreferenceUtils.getContent(Constants.KEY_COMADDRESS);
         addressview.setLabel(s);
 
-
     }
 }
