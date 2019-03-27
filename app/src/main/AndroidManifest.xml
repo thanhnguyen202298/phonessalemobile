@@ -38,7 +38,8 @@
         <activity android:name=".screen.Presentation.PresentActivity" />
         <activity
             android:name=".screen.main.testmenu"
-            android:label="@string/title_activity_main2"></activity>
+            android:label="@string/title_activity_main2" />
+        <activity android:name=".screen.main.ListItem"></activity>
     </application>
 
 </manifest>
