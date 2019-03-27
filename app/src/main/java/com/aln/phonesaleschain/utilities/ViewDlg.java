@@ -3,6 +3,7 @@ package com.aln.phonesaleschain.utilities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemImageText;
+import com.aln.phonesaleschain.screen.Presentation.PresentActivity;
+import com.aln.phonesaleschain.screen.homepage.HomePage;
+import com.aln.phonesaleschain.screen.main.ListItem;
 
 public class ViewDlg implements View.OnClickListener {
     Dialog dialog;
@@ -50,11 +54,43 @@ public class ViewDlg implements View.OnClickListener {
         branchbtn.setIdDrawerable(R.drawable.ic_family_tree);
         branchbtn.setLabel(R.string.branch_menu);
 
-
     }
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(ctx, v.getId() + "", Toast.LENGTH_SHORT).show();
+        Intent it = new Intent();
+        switch (v.getId()) {
+            case R.id.product:
+                it = new Intent(ctx, PresentActivity.class);
+                ctx.startActivity(it);
+                break;
+            case R.id.news:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "prom");
+                ctx.startActivity(it);
+                break;
+            case R.id.account:
+                it = new Intent(ctx, HomePage.class);
+                ctx.startActivity(it);
+                break;
+
+            case R.id.chat:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "chat");
+                ctx.startActivity(it);
+                break;
+
+            case R.id.notice:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "notice");
+                ctx.startActivity(it);
+                break;
+
+            case R.id.branchs:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "cate");
+                ctx.startActivity(it);
+                break;
+        }
     }
 }
