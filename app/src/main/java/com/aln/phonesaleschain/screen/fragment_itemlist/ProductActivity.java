@@ -118,7 +118,9 @@ public class ProductActivity extends Fragment {
             //loading cates
         } else if (mParam1.toLowerCase().equals("prod")) {
             //loading cates
-        }else if (mParam1.toLowerCase().equals("notic")) {
+        } else if (mParam1.toLowerCase().equals("notic")) {
+            //loading cates
+        } else if (mParam1.toLowerCase().equals("prom")) {
             //loading cates
         }
         fragNews.setNewsPaperlist(data);

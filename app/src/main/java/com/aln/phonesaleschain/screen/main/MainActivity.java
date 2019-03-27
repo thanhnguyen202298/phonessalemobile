@@ -19,7 +19,7 @@ import com.aln.phonesaleschain.utilities.ViewDlg;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ItemImageText mitem1,mitem2,mitem3,mitem4;
+    ItemImageText mitem1, mitem2, mitem3, mitem4;
     ImageView circleig;
 
     @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
-    void setupMenuMain(){
+    void setupMenuMain() {
         //setup menu
         try {
             mitem1 = new ItemImageText(this, R.id.menuitem1, this);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     m.showMenuDlg(MainActivity.this);
                 }
             });
-        }catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             Toast.makeText(this, iae.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -78,22 +78,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent it = new Intent();
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.menuitem1:
-                it = new Intent(this,PresentActivity.class);
-                startActivity(it);break;
+                it = new Intent(this, PresentActivity.class);
+                startActivity(it);
+                break;
+
             case R.id.menuitem2:
-                it = new Intent(this,ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN,"prom");
-                startActivity(it);break;
-            case R.id.menuitem3:
-                it = new Intent(this,HomePage.class);
-                startActivity(it);break;
+                it = new Intent(this, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "prom");
+                startActivity(it);
+                break;
 
             case R.id.menuitem4:
-                it = new Intent(this,ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN,"schadule");
-                startActivity(it);break;
+                it = new Intent(this, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "scha");
+                startActivity(it);
+                break;
+
+            case R.id.menuitem3:
+                it = new Intent(this, HomePage.class);
+                startActivity(it);
+                break;
+
         }
 
     }

@@ -31,10 +31,10 @@ public class PresentActivity extends AppCompatActivity {
         TextView txt = findViewById(R.id.contenshow);
         txt.setText(s);
 
-        s=PreferenceUtils.getContent(Constants.KEY_TEL);
+        s = PreferenceUtils.getContent(Constants.KEY_TEL);
         telview.setLabel(s);
 
-        s=PreferenceUtils.getContent(Constants.KEY_COMADDRESS);
+        s = PreferenceUtils.getContent(Constants.KEY_COMADDRESS);
         addressview.setLabel(s);
 
     }
