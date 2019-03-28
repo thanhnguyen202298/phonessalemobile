@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemImageText;
+import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
 import com.aln.phonesaleschain.screen.Presentation.PresentActivity;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
 import com.aln.phonesaleschain.screen.homepage.HomePage;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.menuitem1:
                 it = new Intent(this, PresentActivity.class);
+                it.putExtra(Constants.KEY_CONTENT, PreferenceUtils.getContent(Constants.KEY_PRESENT));
                 startActivity(it);
                 break;
 
