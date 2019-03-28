@@ -3,20 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".TaiKhoanFragment">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo" />
-    </LinearLayout>
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +30,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/roundedconer_back_orange"
+            android:background="@drawable/rounded_back"
             android:gravity="center"
             android:text="Đổi thông tin"
             android:textColor="@color/white"
@@ -56,7 +43,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:background="@drawable/roundedconer_backdetail"
+            android:background="@drawable/rounded_backdetail"
             android:orientation="vertical">
 
             <!-- Ten Label -->
@@ -131,7 +118,7 @@
                     android:enabled="false"
                     android:layout_margin="3dp"
                     android:drawableLeft="@drawable/ic_email_organe_24dp"
-                    android:hint="@string/email"
+                    android:hint="email"
                     android:textColor="@color/jet"
                     android:textSize="13sp" />
             </android.support.design.widget.TextInputLayout>
