@@ -18,10 +18,10 @@ public class SSkeyNotify implements InotifySskey {
     private Notification.Builder notifyBuider;
     private NotificationManager notiMaa;
     private Notification mnotification;
-    private String ChannelID = "Kimnguyen-Hrm";
+    private String ChannelID = "appphone";
     private static int NotifyID = 12579;
-    private String ChannelName = "Kimnguyen-Hrm";
-    private String ChannelDescription = "Kimnguyen-Hrm thông báo đơn nghỉ phép";
+    private String ChannelName = "phonsale";
+    private String ChannelDescription = "";
     private Context ctx;
 
     public SSkeyNotify(Context context) {
@@ -95,8 +95,8 @@ public class SSkeyNotify implements InotifySskey {
         }
 
         notifyBuider.setSmallIcon(R.drawable.icon_add3x)
-                .setContentTitle("Kim Nguyên")
-                .setContentText("Ứng dụng quản lý nhân sự")
+                .setContentTitle("")
+                .setContentText("")
                 .setAutoCancel(true);
 
         mnotification = notifyBuider.build();
@@ -111,8 +111,6 @@ public class SSkeyNotify implements InotifySskey {
     public void setPendingNotiSSk(boolean noti8, String notifyText) {
         Intent it = new Intent(ctx.getApplicationContext(), HomeActivity.class);
         it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        it.putExtra(Constants.StartFromDetail, "");
-        it.putExtra(Constants.StartFromNotify, "");
         Intent[] mit = new Intent[1];
         mit[0] = it;
         PendingIntent pe = PendingIntent.getActivities(ctx.getApplicationContext(), NotifyID, mit, PendingIntent.FLAG_CANCEL_CURRENT);
