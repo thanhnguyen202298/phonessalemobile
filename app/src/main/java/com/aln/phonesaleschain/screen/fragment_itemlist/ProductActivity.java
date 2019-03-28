@@ -19,6 +19,7 @@ import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
 import com.aln.phonesaleschain.model.UserInfo;
 import com.aln.phonesaleschain.model.order.OrderMaster;
+import com.aln.phonesaleschain.screen.order.detail.DetailCartActivity;
 import com.aln.phonesaleschain.utilities.Constants;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 
@@ -28,7 +29,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ProductActivity.OnFragmentInteractionListener} interface
+ * {@link ProductActivity.OnProductInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ProductActivity#newInstance} factory method to
  * create an instance of this fragment.
@@ -45,7 +46,7 @@ public class ProductActivity extends Fragment {
     private ActivityProductBinding fragNews;
     OrderMaster master;
 
-    private OnFragmentInteractionListener mListener;
+    private OnProductInteractionListener mListener;
 
     public ProductActivity() {
         // Required empty public constructor
@@ -129,15 +130,15 @@ public class ProductActivity extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onProductInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnProductInteractionListener) {
+            mListener = (OnProductInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -162,8 +163,8 @@ public class ProductActivity extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnProductInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onProductInteraction(Uri uri);
     }
 }
