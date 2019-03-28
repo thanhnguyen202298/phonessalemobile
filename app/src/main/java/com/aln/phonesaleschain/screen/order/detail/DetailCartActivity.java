@@ -22,7 +22,7 @@ public class DetailCartActivity extends Fragment {
     private int mParam2;
     private ActivityDetailCartBinding fragNews;
 
-    private DetailCartActivity.OnFragmentInteractionListener mListener;
+    private OnCartInteractionListener mListener;
 
     public DetailCartActivity() {
         // Required empty public constructor
@@ -68,8 +68,8 @@ public class DetailCartActivity extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof ProductActivity.OnFragmentInteractionListener) {
-            mListener = (DetailCartActivity.OnFragmentInteractionListener) context;
+        if (context instanceof OnCartInteractionListener) {
+            mListener = (OnCartInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -94,8 +94,8 @@ public class DetailCartActivity extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnCartInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onCartInteraction(Uri uri);
     }
 }

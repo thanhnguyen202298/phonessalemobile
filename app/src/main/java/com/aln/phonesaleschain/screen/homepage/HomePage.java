@@ -1,6 +1,7 @@
 package com.aln.phonesaleschain.screen.homepage;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +12,7 @@ import android.support.v7.widget.GridLayoutManager;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements ProductActivity.OnProductInteractionListener {
     private ProductActivity newsFrag, cateFrag;
     private FragmentManager frgManager;
 
@@ -35,5 +36,10 @@ public class HomePage extends AppCompatActivity {
         tf.add(R.id.newsFrame, newsFrag);
         tf.add(R.id.CategoFrame, cateFrag);
         tf.commit();
+    }
+
+    @Override
+    public void onProductInteraction(Uri uri) {
+
     }
 }
