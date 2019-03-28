@@ -1,5 +1,6 @@
 package com.aln.phonesaleschain.screen.main;
 
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +13,7 @@ import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
 import com.aln.phonesaleschain.utilities.Constants;
 
-public class ListItem extends AppCompatActivity {
+public class ListItem extends AppCompatActivity implements ProductActivity.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener {
 
     private FragmentManager frgManager;
     private Fragment fragList;
@@ -41,5 +42,15 @@ public class ListItem extends AppCompatActivity {
     private String getScreenName() {
         String it = getIntent().getStringExtra(Constants.KEY_SCREEN);
         return it == null ? "news" : it;
+    }
+
+    @Override
+    public void onProductInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onAccountInteraction(Uri uri) {
+
     }
 }

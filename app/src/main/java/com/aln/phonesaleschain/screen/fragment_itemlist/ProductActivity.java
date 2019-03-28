@@ -109,19 +109,20 @@ public class ProductActivity extends Fragment {
                 }
             }
         });
+        loadData();
     }
 
     private void loadData() {
         List<ItemVariable> data = new ArrayList<>();
-        if (mParam1.toLowerCase().equals("news")) {
+        if (mParam1=="news") {
             //loading news
-        } else if (mParam1.toLowerCase().equals("cate")) {
+        } else if (mParam1=="cate") {
             //loading cates
-        } else if (mParam1.toLowerCase().equals("prod")) {
+        } else if (mParam1=="prod") {
             //loading cates
-        } else if (mParam1.toLowerCase().equals("notic")) {
+        } else if (mParam1=="notic") {
             //loading cates
-        } else if (mParam1.toLowerCase().equals("prom")) {
+        } else if (mParam1=="prom") {
             //loading cates
         }
         fragNews.setNewsPaperlist(data);
@@ -143,8 +144,6 @@ public class ProductActivity extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-
-        loadData();
     }
 
     @Override

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void setupMenuMain() {
         //setup menu
+        PreferenceUtils.getSharesPrefer(this);
         try {
             mitem1 = new ItemImageText(this, R.id.menuitem1, this);
             mitem2 = new ItemImageText(this, R.id.menuitem2, this);
