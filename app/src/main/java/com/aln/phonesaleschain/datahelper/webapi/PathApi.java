@@ -4,6 +4,9 @@ import com.aln.phonesaleschain.gps.CurrentPosition;
 import com.aln.phonesaleschain.model.HistoryTrackingResponse;
 import com.aln.phonesaleschain.model.ResponseLastPositionModel;
 import com.aln.phonesaleschain.model.ResponseSavePosition;
+import com.aln.phonesaleschain.model.order.OrderDetail;
+import com.aln.phonesaleschain.model.order.OrderMaster;
+import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.screen.home.model.UserInfo;
 
 import java.util.List;
@@ -16,20 +19,19 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface PathApi {
-    @GET("/api/getmovings")
-    Call<List<CurrentPosition>> getPositionEmployee(@Query("page") int page);
+    @GET("/api/getproduct")
+    Call<ResultApi<List<Product>>> getProduction(@Query("page") int page, @Query("allorid") String idall);
 
-    @GET("/api/getListEmpMoving")
-    Call<ResponseLastPositionModel> getLastStatus(@Query("itime") int itime, @Query("empCode") String empcode);
+    @GET("/api/getorder")
+    Call<ResultApi<List<OrderMaster>>> getOrder(@Query("page") int page, @Query("allorid") String idall);
 
-    @GET("/api/getmovings")
-    Call<HistoryTrackingResponse> getHistoryTracking(@Query("page") int page, @Query("Empcode") String empCode, @Query("pagesize") int pageSize);
 
-    @POST("/api/login")
-    @FormUrlEncoded
-    Call<ResultApi<List<UserInfo>>> getStatusLogin(@Field("UserName") String username, @Field("Password") String password);
+    @GET("/api/getorderdtl")
+    Call<ResultApi<List<OrderDetail>>> getOrderDtl(@Query("allorid") String idall);
 
-    @POST("/api/saveloc")
-    @FormUrlEncoded
-    Call<ResponseSavePosition> savePosition(@Field("EmpCode") String empCode, @Field("Latitude") Double lat, @Field("Longitude") Double lon, @Field("Address") String address);
+
+    @GET("/api/getpromotion")
+    Call<ResultApi<List<OrderDetail>>> getPromotion(@Query("allorid") String idall);
+
+
 }

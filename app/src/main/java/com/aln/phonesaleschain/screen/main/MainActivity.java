@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.menuitem1:
                 it = new Intent(this, PresentActivity.class);
-                it.putExtra(Constants.KEY_CONTENT, PreferenceUtils.getContent(Constants.KEY_PRESENT));
                 startActivity(it);
                 break;
 

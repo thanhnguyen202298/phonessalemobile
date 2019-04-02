@@ -4,7 +4,7 @@ public class APIUtils {
 
 //    public static final String BASE_PRIVATE = "http://125.253.113.123:10002";
 //    public static final String BASE_PRIVATE = "http://112.78.1.203";
-    public static final String BASE_PRIVATE = "http://192.168.1.110:82";
+    public static final String BASE_PRIVATE = "http://localhost:63574/";
 //    public static final String BASE_PRIVATE = "http://192.168.1.119:8080";
 
 

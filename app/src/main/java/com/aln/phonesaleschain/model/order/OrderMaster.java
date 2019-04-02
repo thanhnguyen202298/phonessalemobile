@@ -6,27 +6,27 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OrderMaster {
-    public String orderCode;
-    public String userCode;
-    public String timeBook;
-    public String timeStatus;
-    public String timeShip;
 
-    public double amount;
-    public String status;
-    public int ranking;
-    public String requestType;//ghi chú
-    public UserInfo user;
-    public String shopName;
-    public String shopId;
-    public String shopPhone;
-
-    public String postMan;
-    public boolean syncPostMan;
-
-    public boolean synchronizedUser;
-    public boolean synchronizedShop;
-    public String addresShip;
+    public String OrderCode;
+    public String OrderType;
+    public String PostMan;
+    public String Promotion;
+    public int Ranking;
+    public String ShipTime;
+    public String ShopCode;
+    public String ShopName;
+    public String ShopPhone;
+    public String StatusTime;
+    public String UserCode;
+    public String UserName;
+    public String AddressTo;
+    public double Amount;
+    public String BookTime;
+    public String CreateOn;
+    public String ModifyBy;
+    public String ModifyOn;
+    public String TypeName;
+    public String NameState;
     //
     public List<OrderDetail> detailslist;
 
@@ -34,13 +34,12 @@ public class OrderMaster {
     }
 
     public String getAmount() {
-        return amount + "";
+        return Amount + "";
     }
 
     public void setDonHangChiTiets(HashMap<Integer, OrderDetail> deetailist) {
 
-        for (Integer i : deetailist.keySet()
-                ) {
+        for (Integer i : deetailist.keySet()) {
             detailslist.add(deetailist.get(i));
         }
     }
