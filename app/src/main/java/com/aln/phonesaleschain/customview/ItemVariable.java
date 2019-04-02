@@ -18,7 +18,4 @@ public class ItemVariable {
         return label + "\n" + amount;
     }
 
-    public void ClickMe(View view) {
-        MyAdapter.onClick(idDrawer);
-    }
 }

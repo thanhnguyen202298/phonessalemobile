@@ -13,7 +13,7 @@ public class Product {
     public String ColorPhone;
     public String Detail;
     public String CreateOn;
-    public String Image;
+    public String ImageUrl;
     public String ModifyBy;
     public String ModifyOn;
     public double Price;

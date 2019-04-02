@@ -17,14 +17,22 @@ import com.aln.phonesaleschain.adapter.MyAdapter;
 import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
+import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
+import com.aln.phonesaleschain.datahelper.webapi.PathApi;
+import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
 import com.aln.phonesaleschain.model.UserInfo;
 import com.aln.phonesaleschain.model.order.OrderMaster;
+import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.screen.order.detail.DetailCartActivity;
 import com.aln.phonesaleschain.utilities.Constants;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +52,8 @@ public class ProductActivity extends Fragment {
     private String mParam1;
     private int mParam2;
     private ActivityProductBinding fragNews;
-    OrderMaster master;
+    private OrderMaster master;
+    PathApi aconect;
 
     private OnProductInteractionListener mListener;
 
@@ -77,6 +86,7 @@ public class ProductActivity extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getInt(ARG_PARAM2);
         }
+        aconect = APIUtils.getService();
     }
 
     @Override
@@ -114,15 +124,15 @@ public class ProductActivity extends Fragment {
 
     private void loadData() {
         List<ItemVariable> data = new ArrayList<>();
-        if (mParam1=="news") {
+        if (mParam1 == "news") {
             //loading news
-        } else if (mParam1=="cate") {
+        } else if (mParam1 == "cate") {
             //loading cates
-        } else if (mParam1=="prod") {
+        } else if (mParam1 == "prod") {
             //loading cates
-        } else if (mParam1=="notic") {
+        } else if (mParam1 == "notic") {
             //loading cates
-        } else if (mParam1=="prom") {
+        } else if (mParam1 == "prom") {
             //loading cates
         }
         fragNews.setNewsPaperlist(data);
@@ -162,6 +172,27 @@ public class ProductActivity extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
+    private void LoadCate() {
+        aconect.getBrand(1, "all").enqueue(new Callback<ResultApi<List<Brandy>>>() {
+            @Override
+            public void onResponse(Call<ResultApi<List<Brandy>>> call, Response<ResultApi<List<Brandy>>> response) {
+                if (response.body() != null)
+                {
+                    ResultApi rss = response.body();
+                    if(rss.status>0 && rss.data!=null)
+                        fragNews.setNewsPaperlist(rss.data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultApi<List<Brandy>>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
     public interface OnProductInteractionListener {
         // TODO: Update argument type and name
         void onProductInteraction(Uri uri);
