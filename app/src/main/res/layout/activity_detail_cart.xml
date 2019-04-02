@@ -61,7 +61,7 @@
                 android:hint="MaDonHang"
                 android:inputType="textCapWords"
                 android:numeric="integer"
-                android:text="@{orderPmaster.orderCode}"/>
+                android:text="@{orderPmaster.OrderCode}"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:padding="5dp"
                 android:hint="in process"
-                android:text="@{orderPmaster.status}"
+                android:text="@{orderPmaster.NameState}"
                 android:textAlignment="gravity"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
@@ -293,7 +293,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:hint="1000,000,000"
-                android:text="@{orderPmaster.getAmount()}"
+                android:text="@{orderPmaster.Amount}"
                 android:textAlignment="textEnd"
                 android:textColor="@color/orange"
                 android:textSize="25sp"

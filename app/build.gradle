@@ -47,4 +47,6 @@ dependencies {
     implementation "net.grandcentrix.thirtyinch:thirtyinch-rx2:$thirtyinchVersion"
     implementation "net.grandcentrix.thirtyinch:thirtyinch-logginginterceptor:$thirtyinchVersion"
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

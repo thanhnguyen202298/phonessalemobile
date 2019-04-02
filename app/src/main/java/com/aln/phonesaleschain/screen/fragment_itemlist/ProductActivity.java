@@ -123,7 +123,7 @@ public class ProductActivity extends Fragment {
     }
 
     private void loadData() {
-        List<ItemVariable> data = new ArrayList<>();
+//        List<ItemVariable> data = new ArrayList<>();
         if (mParam1 == "news") {
             //loading news
         } else if (mParam1 == "cate") {
@@ -135,7 +135,7 @@ public class ProductActivity extends Fragment {
         } else if (mParam1 == "prom") {
             //loading cates
         }
-        fragNews.setNewsPaperlist(data);
+//        fragNews.setNewsPaperlist(data);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -181,7 +181,11 @@ public class ProductActivity extends Fragment {
                 {
                     ResultApi rss = response.body();
                     if(rss.status>0 && rss.data!=null)
-                        fragNews.setNewsPaperlist(rss.data);
+                    {
+                        List<Brandy> l = (List<Brandy>)rss.data;
+                        fragNews.setNewsPaperlist(l);
+                    }
+
                 }
             }
 

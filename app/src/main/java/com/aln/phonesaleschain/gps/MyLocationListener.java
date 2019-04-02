@@ -158,20 +158,7 @@ public class MyLocationListener implements LocationListener {
         if (flag == false)
         {
             flag = true;
-            mService.savePosition(currentPosition.getMaNV(),currentPosition.getLatitue(),currentPosition.getLongitue(),currentPosition.getAddress()).enqueue(new Callback<ResponseSavePosition>() {
-                @Override
-                public void onResponse(Call<ResponseSavePosition> call, Response<ResponseSavePosition> response) {
-                    response.body();
-                    flag = false;
-                    Log.e("<<thanhserver", response.message());
-                }
 
-                @Override
-                public void onFailure(Call<ResponseSavePosition> call, Throwable t) {
-                    Log.e("<<errror knguyen", t.getMessage());
-                    flag = false;
-                }
-            });
         }
 
     }

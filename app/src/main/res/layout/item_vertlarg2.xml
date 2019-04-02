@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:src="@{item.idDrawer}" />
+        android:image="@{item.getIdDrawer()}"
+        android:id="@+id/imgload" />
 
     <TextView
         android:layout_width="match_parent"

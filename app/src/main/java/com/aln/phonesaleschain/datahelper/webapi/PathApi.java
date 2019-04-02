@@ -41,4 +41,8 @@ public interface PathApi {
     @GET("/api/getbrand")
     Call<ResultApi<List<Brandy>>> getBrand(@Query("page") int page, @Query("allorid") String idall);
 
+    @POST("/api/login")
+    @FormUrlEncoded
+    Call<ResultApi<List<UserInfo>>> getStatusLogin(@Field("UserName") String username, @Field("Password") String password);
+
 }
