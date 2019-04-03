@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
@@ -17,18 +18,22 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
 
     private FragmentManager frgManager;
     private Fragment fragList;
+    private TextView label;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item);
 
+        label = findViewById(R.id.labelToolbar);
         frgManager = getSupportFragmentManager();
-        if(getScreenName().equals("acco"))
+        String l = getScreenName();
+        if (l.equals("acco"))
             fragList = new AccountFragment();
         else
-        fragList = ProductActivity.newInstance(getScreenName(), GridLayoutManager.VERTICAL);
-
+            fragList = ProductActivity.newInstance(l, GridLayoutManager.VERTICAL);
+        if (getIntent().getStringExtra(Constants.KEY_Label_Screen) != null)
+            label.setText(getIntent().getStringExtra(Constants.KEY_Label_Screen));
         loadFragment();
     }
 

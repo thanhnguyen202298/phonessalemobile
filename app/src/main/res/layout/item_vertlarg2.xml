@@ -15,7 +15,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/list2Item"
         android:layout_gravity="center"
         android:image="@{item.getIdDrawer()}"
         android:id="@+id/imgload" />

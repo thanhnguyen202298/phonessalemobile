@@ -15,9 +15,12 @@ import android.widget.ImageView;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.model.product.Brandy;
+import com.aln.phonesaleschain.model.product.Product;
+import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.screen.home.HomeActivity;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     private GridLayoutManager managerlayout;
     private int resLayout;
     private int idVar;
+    private Type t;
 
     public MyAdapter(Context context, int resIdlayout, int column, int varBinding, int orient) {
         mylist = new ArrayList<>();
@@ -51,7 +55,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder itemHolder, int i) {
-        itemHolder.getLayoutBind().setVariable(idVar,mylist.get(i));
+        Object oj = mylist.get(i);
+        Brandy br = null;
+        Product pr = null;
+        Promotion prom = null;
+        if (oj instanceof Brandy) {
+            br = (Brandy) oj;
+        }
+        if (oj instanceof Product) {
+            pr = (Product) oj;
+        }
+        if (oj instanceof Promotion) {
+            prom = (Promotion) oj;
+        }
+
+        if (br != null)
+            itemHolder.getLayoutBind().setVariable(idVar, br);
+        if (pr != null)
+            itemHolder.getLayoutBind().setVariable(idVar, pr);
+        if (prom != null)
+            itemHolder.getLayoutBind().setVariable(idVar, prom);
 
         itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,5 +9,6 @@
     <dimen name="half_fab_margin">8dp</dimen>
     <dimen name="toolbar_title">22dp</dimen>
     <dimen name="dlg_menuItem">50dp</dimen>
+    <dimen name="list2Item">150dp</dimen>
 
 </resources>
