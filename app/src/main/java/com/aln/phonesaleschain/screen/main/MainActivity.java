@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.menuitem2:
                 it = new Intent(this, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "prom");
+                it.putExtra(Constants.KEY_Label_Screen,getResources().getString(R.string.promotion_label));
                 startActivity(it);
                 break;
 
