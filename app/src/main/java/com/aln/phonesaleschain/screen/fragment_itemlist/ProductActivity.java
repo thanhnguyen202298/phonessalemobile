@@ -126,10 +126,10 @@ public class ProductActivity extends Fragment {
 //        List<ItemVariable> data = new ArrayList<>();
         if (mParam1.equals("news")) {
             //loading news
-        } else if (mParam1.equals("cate")) {
-            LoadCate();
+        } else if (mParam1.equals("branch")) {
+
         } else if (mParam1.equals("prod")) {
-            //loading cates
+            LoadCate();
         } else if (mParam1.equals("notic")) {
             //loading cates
         } else if (mParam1.equals("prom")) {

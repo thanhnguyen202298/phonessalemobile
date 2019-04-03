@@ -81,8 +81,7 @@ public class ViewDlg implements View.OnClickListener {
                 break;
             case R.id.branchs:
                 it = new Intent(ctx, ListItem.class);
-                it.putExtra(Constants.KEY_SCREEN, "cate");
-                it.putExtra(Constants.KEY_Label_Screen, ctx.getResources().getString(R.string.products_menu));
+                it.putExtra(Constants.KEY_SCREEN, "branch");
 
                 break;
             case R.id.account:
