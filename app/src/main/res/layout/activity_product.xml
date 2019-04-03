@@ -5,7 +5,7 @@
 
         <variable
             name="newsPaperlist"
-            type="java.util.List" />
+            type="com.aln.phonesaleschain.customview.ContentVarible" />
     </data>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:clipToPadding="false"
             android:paddingBottom="50dp"
-            android:data="@{newsPaperlist}" />
+            android:data="@{newsPaperlist.content}" />
 
     </LinearLayout>
 

@@ -12,4 +12,14 @@ public class Brandy extends ItemVariable {
     public String getIdDrawer() {
         return ImgUrl;
     }
+
+    @Override
+    public String getLabel() {
+        return BrandName;
+    }
+
+    @Override
+    public String getIdItem() {
+        return BrandId;
+    }
 }

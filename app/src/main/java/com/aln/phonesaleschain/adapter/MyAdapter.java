@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemVariable;
+import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.screen.home.HomeActivity;
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implements MyBindingAdapter<List<Object>> {
 
-    private List<Object> mylist;
+    private List mylist;
     private static Context base;
     private GridLayoutManager managerlayout;
     private int resLayout;

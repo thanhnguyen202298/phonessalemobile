@@ -63,30 +63,30 @@ public class ViewDlg implements View.OnClickListener {
             case R.id.product:
                 it = new Intent(ctx, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "prod");
-                ctx.startActivity(it);
+
                 break;
             case R.id.notice:
                 it = new Intent(ctx, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "notic");
-                ctx.startActivity(it);
+
                 break;
 
             case R.id.news:
                 it = new Intent(ctx, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "news");
-                ctx.startActivity(it);
+
                 break;
             case R.id.branchs:
                 it = new Intent(ctx, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "cate");
-                ctx.startActivity(it);
+
                 break;
             case R.id.account:
                 it = new Intent(ctx, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "acco");
-                ctx.startActivity(it);
+
                 break;
-//
+
 //            case R.id.chat:
 //                it = new Intent(ctx, ListItem.class);
 //                it.putExtra(Constants.KEY_SCREEN, "chat");
@@ -94,5 +94,9 @@ public class ViewDlg implements View.OnClickListener {
 //                break;
 
         }
+
+        if (it.getStringExtra(Constants.KEY_SCREEN) != null)
+            ctx.startActivity(it);
+        dialog.dismiss();
     }
 }

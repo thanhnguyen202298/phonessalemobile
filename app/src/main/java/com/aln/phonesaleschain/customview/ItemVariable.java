@@ -6,8 +6,14 @@ import com.aln.phonesaleschain.adapter.MyAdapter;
 import com.google.gson.annotations.SerializedName;
 
 public class ItemVariable {
-    public String idDrawer;
+    public String IdDrawer;
     public String Label;
+
+    public String getIdItem() {
+        return IdItem;
+    }
+
+    public String IdItem;
 
     public String Amount = "";
 
@@ -18,6 +24,6 @@ public class ItemVariable {
     }
 
     public String getIdDrawer() {
-        return idDrawer;
+        return IdDrawer;
     }
 }

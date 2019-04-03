@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
+import com.aln.phonesaleschain.customview.ContentVarible;
 import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
@@ -23,11 +24,7 @@ import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
 import com.aln.phonesaleschain.model.UserInfo;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
-import com.aln.phonesaleschain.screen.order.detail.DetailCartActivity;
-import com.aln.phonesaleschain.utilities.Constants;
-import com.aln.phonesaleschain.utilities.UtilBasic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -54,7 +51,8 @@ public class ProductActivity extends Fragment {
     private ActivityProductBinding fragNews;
     private OrderMaster master;
     PathApi aconect;
-
+    MyAdapter myAdapter;
+    ContentVarible cl;
     private OnProductInteractionListener mListener;
 
     public ProductActivity() {
@@ -99,7 +97,9 @@ public class ProductActivity extends Fragment {
     }
 
     private void initialize() {
-        MyAdapter myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2);
+        cl = new ContentVarible();
+        fragNews.setNewsPaperlist(cl);
+        myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
@@ -124,18 +124,17 @@ public class ProductActivity extends Fragment {
 
     private void loadData() {
 //        List<ItemVariable> data = new ArrayList<>();
-        if (mParam1 == "news") {
+        if (mParam1.equals("news")) {
             //loading news
-        } else if (mParam1 == "cate") {
+        } else if (mParam1.equals("cate")) {
+            LoadCate();
+        } else if (mParam1.equals("prod")) {
             //loading cates
-        } else if (mParam1 == "prod") {
+        } else if (mParam1.equals("notic")) {
             //loading cates
-        } else if (mParam1 == "notic") {
-            //loading cates
-        } else if (mParam1 == "prom") {
+        } else if (mParam1.equals("prom")) {
             //loading cates
         }
-//        fragNews.setNewsPaperlist(data);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -162,28 +161,14 @@ public class ProductActivity extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-
     private void LoadCate() {
         aconect.getBrand(1, "all").enqueue(new Callback<ResultApi<List<Brandy>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Brandy>>> call, Response<ResultApi<List<Brandy>>> response) {
-                if (response.body() != null)
-                {
+                if (response.body() != null) {
                     ResultApi rss = response.body();
-                    if(rss.status>0 && rss.data!=null)
-                    {
-                        List<Brandy> l = (List<Brandy>)rss.data;
-                        fragNews.setNewsPaperlist(l);
+                    if (rss.status > 0 && rss.data != null) {
+                        cl.setContent((List<Brandy>) rss.data);
                     }
 
                 }
