@@ -2,9 +2,10 @@ package com.aln.phonesaleschain.model.product;
 
 import android.graphics.Color;
 
+import com.aln.phonesaleschain.customview.ItemVariable;
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+public class Product extends ItemVariable {
     public String ProductCode;
     public String ProductName;
     public String ProductType;
@@ -18,4 +19,19 @@ public class Product {
     public String ModifyOn;
     public double Price;
     public String TypeName;
+
+    @Override
+    public String getIdDrawer() {
+        return ImageUrl;
+    }
+
+    @Override
+    public String getLabel() {
+        return ProductName;
+    }
+
+    @Override
+    public String getIdItem() {
+        return ProductCode;
+    }
 }

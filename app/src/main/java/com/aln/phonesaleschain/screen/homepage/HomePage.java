@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
@@ -24,6 +25,8 @@ public class HomePage extends AppCompatActivity implements ProductActivity.OnPro
     }
 
     private void init() {
+        TextView label = findViewById(R.id.labelToolbar);
+        label.setText(R.string.home_Label);
         frgManager = getSupportFragmentManager();
         newsFrag = ProductActivity.newInstance("news", GridLayoutManager.HORIZONTAL);
         cateFrag = ProductActivity.newInstance("prod", GridLayoutManager.HORIZONTAL);

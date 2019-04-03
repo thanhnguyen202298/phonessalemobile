@@ -8,6 +8,7 @@ import com.aln.phonesaleschain.model.order.OrderDetail;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
+import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.screen.home.model.UserInfo;
 
 import java.util.List;
@@ -32,11 +33,11 @@ public interface PathApi {
 
 
     @GET("/api/getpromotion")
-    Call<ResultApi<List<OrderDetail>>> getPromotion(@Query("allorid") String idall);
+    Call<ResultApi<List<Promotion>>> getPromotion(@Query("allorid") String idall);
 
 
     @GET("/api/getpromotionbydate")
-    Call<ResultApi<List<OrderDetail>>> getPromotionByDate(@Query("fromdate") String fromdate,@Query("todate") String todate);
+    Call<ResultApi<List<Promotion>>> getPromotionByDate(@Query("fromdate") String fromdate,@Query("todate") String todate);
 
     @GET("/api/getbrand")
     Call<ResultApi<List<Brandy>>> getBrand(@Query("page") int page, @Query("allorid") String idall);

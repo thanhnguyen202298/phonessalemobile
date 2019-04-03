@@ -22,8 +22,10 @@ import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
 import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
 import com.aln.phonesaleschain.model.UserInfo;
+import com.aln.phonesaleschain.model.order.OrderDetail;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
+import com.aln.phonesaleschain.model.product.Promotion;
 
 import java.util.List;
 
@@ -133,7 +135,7 @@ public class ProductActivity extends Fragment {
         } else if (mParam1.equals("notic")) {
             //loading cates
         } else if (mParam1.equals("prom")) {
-            //loading cates
+            loadProm();
         }
     }
 
@@ -180,6 +182,26 @@ public class ProductActivity extends Fragment {
             }
         });
 
+    }
+
+    private void loadProm(){
+        aconect.getPromotion("all").enqueue(new Callback<ResultApi<List<Promotion>>>() {
+            @Override
+            public void onResponse(Call<ResultApi<List<Promotion>>> call, Response<ResultApi<List<Promotion>>> response) {
+                if (response.body() != null) {
+                    ResultApi rss = response.body();
+                    if (rss.status > 0 && rss.data != null) {
+                        cl.setContent((List<Promotion>) rss.data);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultApi<List<Promotion>>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public interface OnProductInteractionListener {
