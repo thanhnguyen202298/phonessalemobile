@@ -26,7 +26,7 @@ public class HomePage extends AppCompatActivity implements ProductActivity.OnPro
     private void init() {
         frgManager = getSupportFragmentManager();
         newsFrag = ProductActivity.newInstance("news", GridLayoutManager.HORIZONTAL);
-        cateFrag = ProductActivity.newInstance("cates", GridLayoutManager.HORIZONTAL);
+        cateFrag = ProductActivity.newInstance("prod", GridLayoutManager.HORIZONTAL);
         loadFragment();
     }
 
