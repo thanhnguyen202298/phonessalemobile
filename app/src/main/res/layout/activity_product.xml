@@ -52,6 +52,7 @@
         android:backgroundTint="@color/orange"
         android:src="@drawable/ic_shopping_cart_black_24dp"
         app:layout_anchor="@id/mynews"
+        android:visibility="gone"
         app:layout_anchorGravity="right|bottom" />
 
     <TextView
