@@ -26,6 +26,8 @@ import com.aln.phonesaleschain.model.order.OrderDetail;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Promotion;
+import com.aln.phonesaleschain.model.speaknotice.Schadule;
+import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
 
 import java.util.List;
 
@@ -133,9 +135,11 @@ public class ProductActivity extends Fragment {
         } else if (mParam1.equals("prod")) {
             LoadCate();
         } else if (mParam1.equals("notic")) {
-            //loading cates
+            LoadInformNotice();
         } else if (mParam1.equals("prom")) {
             loadProm();
+        } else if (mParam1.equals("scha")) {
+            LoadSchadule();
         }
     }
 
@@ -183,6 +187,49 @@ public class ProductActivity extends Fragment {
         });
 
     }
+
+    private void LoadInformNotice() {
+        aconect.getSpeakInform("all","","").enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
+            @Override
+            public void onResponse(Call<ResultApi<List<SpeakInform>>> call, Response<ResultApi<List<SpeakInform>>> response) {
+                if (response.body() != null) {
+                    ResultApi rss = response.body();
+                    if (rss.status > 0 && rss.data != null) {
+                        cl.setContent((List<SpeakInform>) rss.data);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultApi<List<SpeakInform>>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void LoadSchadule() {
+        aconect.getSchadule("all","","").enqueue(new Callback<ResultApi<List<Schadule>>>() {
+            @Override
+            public void onResponse(Call<ResultApi<List<Schadule>>> call, Response<ResultApi<List<Schadule>>> response) {
+                if (response.body() != null) {
+                    ResultApi rss = response.body();
+                    if (rss.status > 0 && rss.data != null) {
+                        cl.setContent((List<Schadule>) rss.data);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultApi<List<Schadule>>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 
     private void loadProm(){
         aconect.getPromotion("all").enqueue(new Callback<ResultApi<List<Promotion>>>() {

@@ -17,6 +17,8 @@ import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
+import com.aln.phonesaleschain.model.speaknotice.Schadule;
+import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
 import com.aln.phonesaleschain.screen.home.HomeActivity;
 import com.squareup.picasso.Picasso;
 
@@ -56,26 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     @Override
     public void onBindViewHolder(@NonNull ItemHolder itemHolder, int i) {
         Object oj = mylist.get(i);
-        Brandy br = null;
-        Product pr = null;
-        Promotion prom = null;
-        if (oj instanceof Brandy) {
-            br = (Brandy) oj;
-        }
-        if (oj instanceof Product) {
-            pr = (Product) oj;
-        }
-        if (oj instanceof Promotion) {
-            prom = (Promotion) oj;
-        }
-
-        if (br != null)
-            itemHolder.getLayoutBind().setVariable(idVar, br);
-        if (pr != null)
-            itemHolder.getLayoutBind().setVariable(idVar, pr);
-        if (prom != null)
-            itemHolder.getLayoutBind().setVariable(idVar, prom);
-
+        ItemBindingType(itemHolder,oj);
         itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +96,40 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     public void setData(List<Object> data) {
         mylist = data;
         notifyDataSetChanged();
+    }
+
+    void ItemBindingType(ItemHolder itemHolder, Object oj){
+        Brandy br = null;
+        Product pr = null;
+        Promotion prom = null;
+        SpeakInform spk = null;
+        Schadule scd = null;
+        if (oj instanceof Brandy) {
+            br = (Brandy) oj;
+        }
+        if (oj instanceof Product) {
+            pr = (Product) oj;
+        }
+        if (oj instanceof Promotion) {
+            prom = (Promotion) oj;
+        }
+        if (oj instanceof SpeakInform) {
+            spk = (SpeakInform) oj;
+        }
+        if (oj instanceof Schadule) {
+            scd = (Schadule) oj;
+        }
+
+        if (br != null)
+            itemHolder.getLayoutBind().setVariable(idVar, br);
+        if (pr != null)
+            itemHolder.getLayoutBind().setVariable(idVar, pr);
+        if (prom != null)
+            itemHolder.getLayoutBind().setVariable(idVar, prom);
+        if (spk != null)
+            itemHolder.getLayoutBind().setVariable(idVar, spk);
+        if (scd != null)
+            itemHolder.getLayoutBind().setVariable(idVar, scd);
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {

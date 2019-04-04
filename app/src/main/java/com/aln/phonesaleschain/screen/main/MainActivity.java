@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.menuitem4:
                 it = new Intent(this, ListItem.class);
                 it.putExtra(Constants.KEY_SCREEN, "scha");
+                it.putExtra(Constants.KEY_Label_Screen,getResources().getString(R.string.schadule_Label));
                 startActivity(it);
                 break;
 

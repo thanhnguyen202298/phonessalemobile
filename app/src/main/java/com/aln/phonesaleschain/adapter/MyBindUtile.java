@@ -20,8 +20,9 @@ public class MyBindUtile {
 
     @BindingAdapter("android:image")
     public static void setImgData(ImageView v, String url) {
-        if (!url.contains("http://"))
-            url = APIUtils.BASE_PRIVATE + url;
+        if (url != null)
+            if (!url.contains("http://"))
+                url = APIUtils.BASE_PRIVATE + url;
         Picasso.get().load(url).placeholder(R.drawable.ic_satellite_black_24dp).into(v);
     }
 }

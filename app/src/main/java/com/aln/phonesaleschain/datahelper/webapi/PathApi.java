@@ -9,6 +9,8 @@ import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
+import com.aln.phonesaleschain.model.speaknotice.Schadule;
+import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
 import com.aln.phonesaleschain.screen.home.model.UserInfo;
 
 import java.util.List;
@@ -37,7 +39,7 @@ public interface PathApi {
 
 
     @GET("/api/getpromotionbydate")
-    Call<ResultApi<List<Promotion>>> getPromotionByDate(@Query("fromdate") String fromdate,@Query("todate") String todate);
+    Call<ResultApi<List<Promotion>>> getPromotionByDate(@Query("fromdate") String fromdate, @Query("todate") String todate);
 
     @GET("/api/getbrand")
     Call<ResultApi<List<Brandy>>> getBrand(@Query("page") int page, @Query("allorid") String idall);
@@ -46,4 +48,11 @@ public interface PathApi {
     @FormUrlEncoded
     Call<ResultApi<List<UserInfo>>> getStatusLogin(@Field("UserName") String username, @Field("Password") String password);
 
+    //4/4/2019
+
+    @GET("/api/getSpeakInform")
+    Call<ResultApi<List<SpeakInform>>> getSpeakInform(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);
+
+    @GET("/api/getSchadule")
+    Call<ResultApi<List<Schadule>>> getSchadule(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);
 }
