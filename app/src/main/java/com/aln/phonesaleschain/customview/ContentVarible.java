@@ -20,7 +20,7 @@ public class ContentVarible extends BaseObservable {
     }
 
     public void setContent(List content) {
-        this.content = content;
+        this.content.addAll(content);
         notifyPropertyChanged(BR.content);
     }
 }

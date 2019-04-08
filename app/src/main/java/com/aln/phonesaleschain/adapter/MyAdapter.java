@@ -10,19 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.aln.phonesaleschain.R;
-import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
 import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
 import com.aln.phonesaleschain.screen.home.HomeActivity;
-import com.squareup.picasso.Picasso;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +28,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     private GridLayoutManager managerlayout;
     private int resLayout;
     private int idVar;
-    private Type t;
 
     public MyAdapter(Context context, int resIdlayout, int column, int varBinding, int orient) {
         mylist = new ArrayList<>();

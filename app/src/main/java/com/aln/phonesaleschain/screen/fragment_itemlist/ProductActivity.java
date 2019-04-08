@@ -7,6 +7,7 @@ import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
+import com.aln.phonesaleschain.adapter.OnScrollCallBack;
 import com.aln.phonesaleschain.customview.ContentVarible;
 import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.databinding.ActivityProductBinding;
@@ -110,6 +112,16 @@ public class ProductActivity extends Fragment {
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
 
+        OnScrollCallBack rvSroll = new OnScrollCallBack(30,1) {
+            @Override
+            public Boolean loadMore(int page, int totalItems, RecyclerView v) {
+                loadData(page);
+                return null;
+            }
+        };
+        rvSroll.setLayout(myAdapter.getLayoutManager());
+        fragNews.mynews.setOnScrollListener(rvSroll);
+
         fragNews.fabCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,23 +137,23 @@ public class ProductActivity extends Fragment {
                 }
             }
         });
-        loadData();
+        loadData(1);
     }
 
-    private void loadData() {
+    private void loadData(int page) {
 //        List<ItemVariable> data = new ArrayList<>();
         if (mParam1.equals("news")) {
             //loading news
         } else if (mParam1.equals("branch")) {
 
         } else if (mParam1.equals("prod")) {
-            LoadCate();
+            LoadCate(page);
         } else if (mParam1.equals("notic")) {
-            LoadInformNotice();
+            LoadInformNotice(page);
         } else if (mParam1.equals("prom")) {
-            loadProm();
+            loadProm(page);
         } else if (mParam1.equals("scha")) {
-            LoadSchadule();
+            LoadSchadule(page);
         }
     }
 
@@ -169,8 +181,8 @@ public class ProductActivity extends Fragment {
         mListener = null;
     }
 
-    private void LoadCate() {
-        aconect.getBrand(1, "all").enqueue(new Callback<ResultApi<List<Brandy>>>() {
+    private void LoadCate(int page) {
+        aconect.getBrand(page, "all").enqueue(new Callback<ResultApi<List<Brandy>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Brandy>>> call, Response<ResultApi<List<Brandy>>> response) {
                 if (response.body() != null) {
@@ -190,8 +202,8 @@ public class ProductActivity extends Fragment {
 
     }
 
-    private void LoadInformNotice() {
-        aconect.getSpeakInform("all","","").enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
+    private void LoadInformNotice(int page) {
+        aconect.getSpeakInform("all","","",page).enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<SpeakInform>>> call, Response<ResultApi<List<SpeakInform>>> response) {
                 if (response.body() != null) {
@@ -211,8 +223,8 @@ public class ProductActivity extends Fragment {
 
     }
 
-    private void LoadSchadule() {
-        aconect.getSchadule("all","","").enqueue(new Callback<ResultApi<List<Schadule>>>() {
+    private void LoadSchadule(int page) {
+        aconect.getSchadule(page,"all","","").enqueue(new Callback<ResultApi<List<Schadule>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Schadule>>> call, Response<ResultApi<List<Schadule>>> response) {
                 if (response.body() != null) {
@@ -232,9 +244,8 @@ public class ProductActivity extends Fragment {
 
     }
 
-
-    private void loadProm(){
-        aconect.getPromotion("all").enqueue(new Callback<ResultApi<List<Promotion>>>() {
+    private void loadProm(int page){
+        aconect.getPromotion(page,"all").enqueue(new Callback<ResultApi<List<Promotion>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Promotion>>> call, Response<ResultApi<List<Promotion>>> response) {
                 if (response.body() != null) {

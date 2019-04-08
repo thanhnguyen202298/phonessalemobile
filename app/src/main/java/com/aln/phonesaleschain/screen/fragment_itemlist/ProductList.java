@@ -69,7 +69,7 @@ public class ProductList extends Fragment {
                              Bundle savedInstanceState) {
         fragNews = DataBindingUtil.inflate(inflater, R.layout.activity_product, container, false);
         initialize();
-        loadProduct();
+        loadProduct(1);
         return fragNews.getRoot();
     }
 
@@ -106,6 +106,7 @@ public class ProductList extends Fragment {
         OnScrollCallBack rvSroll = new OnScrollCallBack(30,1) {
             @Override
             public Boolean loadMore(int page, int totalItems, RecyclerView v) {
+                loadProduct(page);
                 return null;
             }
         };
@@ -129,8 +130,8 @@ public class ProductList extends Fragment {
         });
     }
 
-    private void loadProduct(){
-        aconect.getProduction(1,"all").enqueue(new Callback<ResultApi<List<Product>>>() {
+    private void loadProduct(int page){
+        aconect.getProduction(page,"all").enqueue(new Callback<ResultApi<List<Product>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Product>>> call, Response<ResultApi<List<Product>>> response) {
                 if (response.body() != null) {
