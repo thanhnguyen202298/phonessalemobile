@@ -3,6 +3,7 @@ package com.aln.phonesaleschain.screen.fragment_itemlist;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,7 @@ public class ProductActivity extends Fragment {
     private ActivityProductBinding fragNews;
     private OrderMaster master;
     PathApi aconect;
+
     MyAdapter myAdapter;
     ContentVarible cl;
     private OnProductInteractionListener mListener;
