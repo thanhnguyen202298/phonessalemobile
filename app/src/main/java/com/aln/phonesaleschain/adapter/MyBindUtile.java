@@ -2,6 +2,7 @@ package com.aln.phonesaleschain.adapter;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -24,5 +25,10 @@ public class MyBindUtile {
             if (!url.contains("http://"))
                 url = APIUtils.BASE_PRIVATE + url;
         Picasso.get().load(url).placeholder(R.drawable.ic_satellite_black_24dp).into(v);
+    }
+
+    @BindingAdapter("android:alnid")
+    public static void setIdView(View v, String id) {
+
     }
 }

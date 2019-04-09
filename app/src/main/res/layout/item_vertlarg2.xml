@@ -11,7 +11,8 @@
     android:gravity="center"
     android:background="@color/navi"
     android:layout_margin="@dimen/half_fab_margin"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:contentDescription="@{item.getIdItem()}">
 
     <ImageView
         android:layout_width="match_parent"

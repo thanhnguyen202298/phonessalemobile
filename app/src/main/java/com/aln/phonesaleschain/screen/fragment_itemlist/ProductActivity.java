@@ -24,6 +24,7 @@ import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
 import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
 import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
+import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
 import com.aln.phonesaleschain.model.UserInfo;
 import com.aln.phonesaleschain.model.order.OrderDetail;
 import com.aln.phonesaleschain.model.order.OrderMaster;
@@ -46,7 +47,7 @@ import retrofit2.Response;
  * Use the {@link ProductActivity#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProductActivity extends Fragment {
+public class ProductActivity extends Fragment implements OnclickBrandy, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -158,9 +159,9 @@ public class ProductActivity extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String uri) {
         if (mListener != null) {
-            mListener.onProductInteraction(uri);
+            mListener.onProductInteraction(uri,"".getClass());
         }
     }
 
@@ -264,8 +265,18 @@ public class ProductActivity extends Fragment {
         });
     }
 
+    @Override
+    public void OnClickBramdy(View view) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
     public interface OnProductInteractionListener {
         // TODO: Update argument type and name
-        void onProductInteraction(Uri uri);
+        void onProductInteraction(String obj, Class type);
     }
 }

@@ -110,6 +110,7 @@ public class ProductList extends Fragment {
                 return null;
             }
         };
+
         rvSroll.setLayout(myAdapter.getLayoutManager());
         fragNews.mynews.setOnScrollListener(rvSroll);
 
@@ -139,7 +140,6 @@ public class ProductList extends Fragment {
                     if (rss.status > 0 && rss.data != null) {
                         cl.setContent((List<Product>) rss.data);
                     }
-
                 }
             }
 

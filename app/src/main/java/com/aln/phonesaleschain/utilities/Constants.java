@@ -21,5 +21,6 @@ public class Constants {
     public final static String KEY_PRESENT = "presentScreen";
 
     public final static String KEY_Label_Screen = "labelScreen";
+    public final static String KEY_WhatBrandy_Get = "brandytoshow";
 
 }

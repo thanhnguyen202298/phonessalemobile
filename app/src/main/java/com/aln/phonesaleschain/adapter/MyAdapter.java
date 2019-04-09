@@ -11,13 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
 import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductList;
 import com.aln.phonesaleschain.screen.home.HomeActivity;
+import com.aln.phonesaleschain.utilities.Constants;
+import com.aln.phonesaleschain.utilities.UtilBasic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +33,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     private GridLayoutManager managerlayout;
     private int resLayout;
     private int idVar;
+    Brandy br = null;
+    Product pr = null;
+    Promotion prom = null;
+    SpeakInform spk = null;
+    Schadule scd = null;
+
+    private boolean hasSub;
+
+    public void setHasSub(boolean hasSub) {
+        this.hasSub = hasSub;
+    }
 
     public MyAdapter(Context context, int resIdlayout, int column, int varBinding, int orient) {
         mylist = new ArrayList<>();
@@ -50,15 +66,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder itemHolder, int i) {
+    public void onBindViewHolder(@NonNull final ItemHolder itemHolder, int i) {
         Object oj = mylist.get(i);
-        ItemBindingType(itemHolder,oj);
-        itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ItemBindingType(itemHolder, oj);
 
-            }
-        });
     }
 
     @Override
@@ -92,12 +103,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         notifyDataSetChanged();
     }
 
-    void ItemBindingType(ItemHolder itemHolder, Object oj){
-        Brandy br = null;
-        Product pr = null;
-        Promotion prom = null;
-        SpeakInform spk = null;
-        Schadule scd = null;
+    void ItemBindingType(ItemHolder itemHolder, Object oj) {
+
         if (oj instanceof Brandy) {
             br = (Brandy) oj;
         }
@@ -124,6 +131,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             itemHolder.getLayoutBind().setVariable(idVar, spk);
         if (scd != null)
             itemHolder.getLayoutBind().setVariable(idVar, scd);
+
+        itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hasSub) {
+                    Intent it = new Intent(v.getContext(),ProductList.class);
+                    it.putExtra(Constants.KEY_WhatBrandy_Get,UtilBasic.ObjectToJson(br));
+                    v.getContext().startActivity(it);
+                }
+            }
+        });
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {
