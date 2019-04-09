@@ -266,7 +266,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     }
 
     @Override
-    public void OnClickBramdy(View view) {
+    public void OnClickBrandy(View view) {
 
     }
 
