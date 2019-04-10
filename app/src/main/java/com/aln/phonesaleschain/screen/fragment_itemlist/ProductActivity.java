@@ -7,6 +7,7 @@ import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ import retrofit2.Response;
 public class ProductActivity extends Fragment implements OnclickBrandy, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    public static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "object";
 
@@ -123,7 +124,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
         // Inflate the layout for this fragment
         fragNews = DataBindingUtil.inflate(inflater, R.layout.activity_product, container, false);
         initialize();
-        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
         return fragNews.getRoot();
     }
 
@@ -244,7 +245,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
             @Override
             public void onFailure(Call<ResultApi<List<SpeakInform>>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -265,7 +266,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
             @Override
             public void onFailure(Call<ResultApi<List<Schadule>>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -286,7 +287,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
             @Override
             public void onFailure(Call<ResultApi<List<Promotion>>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -305,7 +306,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
             @Override
             public void onFailure(Call<ResultApi<List<Product>>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

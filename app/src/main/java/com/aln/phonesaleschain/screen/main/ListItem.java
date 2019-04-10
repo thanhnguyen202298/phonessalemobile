@@ -39,13 +39,16 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
 
     private void loadFragment() {
         FragmentTransaction tf = frgManager.beginTransaction();
+        tf.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         tf.add(R.id.layoutlist, fragList);
         tf.commit();
     }
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction tf = frgManager.beginTransaction();
+        tf.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         tf.replace(R.id.layoutlist, fragment);
+        tf.addToBackStack(fragment.getArguments().getString(ProductActivity.ARG_PARAM1));
         tf.commit();
     }
 
