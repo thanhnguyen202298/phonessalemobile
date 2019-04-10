@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bigimg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/nameprod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bigimg"
+        android:background="@color/jumbo"
+        android:padding="4dp"
+        android:text="ten san pham"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listimg"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/nameprod"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listimg"
+        android:gravity="center"
+        android:text="txx"
+        android:textColor="@color/primary_dark"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/colorchoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:paddingLeft="40dp"
+        android:paddingTop="5dp"
+        android:text="@string/color_select" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listcolor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/colorchoice"
+        android:padding="8dp" />
+
+</RelativeLayout>

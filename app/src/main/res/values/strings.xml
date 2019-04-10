@@ -20,6 +20,7 @@
     <string name="account_menu">Tài Khoản</string>
     <string name="notice_menu">Thông báo</string>
     <string name="branch_menu">Chi nhánh</string>
+    <string name="color_select">Chọn màu sắc</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
