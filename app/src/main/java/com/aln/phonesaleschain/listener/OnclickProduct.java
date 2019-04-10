@@ -1,4 +1,7 @@
 package com.aln.phonesaleschain.listener;
 
-public class OnclickProduct {
+import com.aln.phonesaleschain.model.product.Product;
+
+public interface OnclickProduct {
+    void onProductClick(Product product);
 }

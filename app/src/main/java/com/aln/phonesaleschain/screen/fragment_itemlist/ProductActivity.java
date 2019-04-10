@@ -25,6 +25,7 @@ import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
 import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
 import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
+import com.aln.phonesaleschain.listener.OnclickProduct;
 import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
 import com.aln.phonesaleschain.model.UserInfo;
 import com.aln.phonesaleschain.model.order.OrderDetail;
@@ -51,7 +52,7 @@ import retrofit2.Response;
  * Use the {@link ProductActivity#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProductActivity extends Fragment implements OnclickBrandy, View.OnClickListener {
+public class ProductActivity extends Fragment implements OnclickBrandy, OnclickProduct {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_PARAM1 = "param1";
@@ -131,7 +132,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     private void initialize() {
         cl = new ContentVarible();
         fragNews.setNewsPaperlist(cl);
-        myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2, this);
+        myAdapter = new MyAdapter(fragcotx, R.layout.item_vertlarg2, 2, BR.item, mParam2, this);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
@@ -166,8 +167,10 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
     private void loadData(int page) {
 //        List<ItemVariable> data = new ArrayList<>();
-        if (Brandtofind != null)
+        if (Brandtofind != null){
+            myAdapter.setProducListener(this);
             loadProduct(page);
+        }
         else if (mParam1.equals("news")) {
             //loading news
         } else if (mParam1.equals("branch")) {
@@ -314,12 +317,11 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     @Override
     public void OnClickBrandy(Brandy data) {
         mListener.onProductInteraction("product", UtilBasic.ObjectToJson(data), Brandy.class);
-
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onProductClick(Product product) {
+        mListener.onProductInteraction("productid", UtilBasic.ObjectToJson(product), Product.class);
     }
 
     public interface OnProductInteractionListener {

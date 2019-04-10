@@ -1,6 +1,9 @@
 package com.aln.phonesaleschain.adapter;
 
 import android.databinding.BindingAdapter;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -21,9 +24,14 @@ public class MyBindUtile {
 
     @BindingAdapter("android:image")
     public static void setImgData(ImageView v, String url) {
-        if (url != null)
-            if (!url.contains("http://"))
+        if (url != null) {
+            if (url.length() < 10){
+                v.setBackgroundColor(Color.parseColor(url));
+                return;
+            }
+            else if (!url.contains("http://"))
                 url = APIUtils.BASE_PRIVATE + url;
+        }
         Picasso.get().load(url).placeholder(R.drawable.ic_satellite_black_24dp).into(v);
     }
 

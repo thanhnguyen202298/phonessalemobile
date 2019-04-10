@@ -1,15 +1,30 @@
 package com.aln.phonesaleschain.screen.fragment_itemlist;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.adapter.MyAdapter;
+import com.aln.phonesaleschain.adapter.OnScrollCallBack;
+import com.aln.phonesaleschain.customview.ContentVarible;
+import com.aln.phonesaleschain.databinding.ActivityProductBinding;
+import com.aln.phonesaleschain.databinding.ItemDetailBinding;
+import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
+import com.aln.phonesaleschain.datahelper.webapi.PathApi;
+import com.aln.phonesaleschain.model.order.OrderMaster;
+import com.aln.phonesaleschain.model.product.Brandy;
+import com.aln.phonesaleschain.model.product.Product;
+import com.aln.phonesaleschain.utilities.UtilBasic;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,14 +37,22 @@ import com.aln.phonesaleschain.R;
 public class ItemDetail extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    public static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "object";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
-
+    private int mParam2;
+    private String mParam3;
+    private Context ctx;
     private OnItemInteractionListener mListener;
+
+    ItemDetailBinding itemBinding;
+    PathApi aconect;
+
+    MyAdapter myAdapter;
+    Product cl;
 
     public ItemDetail() {
         // Required empty public constructor
@@ -39,16 +62,17 @@ public class ItemDetail extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param fragname Parameter 1.
+     * @param orient Parameter 2.
      * @return A new instance of fragment ItemDetail.
      */
     // TODO: Rename and change types and number of parameters
-    public static ItemDetail newInstance(String param1, String param2) {
+    public static ItemDetail newInstance(String fragname, int orient, String obj) {
         ItemDetail fragment = new ItemDetail();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, fragname);
+        args.putInt(ARG_PARAM2, orient);
+        args.putString(ARG_PARAM3, obj);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,23 +82,32 @@ public class ItemDetail extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam2 = getArguments().getInt(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
+            cl = UtilBasic.getGs().fromJson(mParam3,Product.class);
         }
+        aconect = APIUtils.getService();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        itemBinding = DataBindingUtil.inflate(inflater,R.layout.item_detail,container,false);
+        initial();
+        return itemBinding.getRoot();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onItemInteraction(uri);
-        }
+    public void onClickBtn(View view) {
+
+    }
+
+    void initial(){
+        itemBinding.setItemdetail(cl);
+        myAdapter = new MyAdapter(ctx,R.layout.item_min_img,1,BR.itemUrl, mParam2, null);
+        itemBinding.listimg.setHasFixedSize(true);
+        itemBinding.listimg.setLayoutManager(myAdapter.getLayoutManager());
+        itemBinding.listimg.setAdapter(myAdapter);
     }
 
     @Override
@@ -86,6 +119,7 @@ public class ItemDetail extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        ctx = context;
     }
 
     @Override

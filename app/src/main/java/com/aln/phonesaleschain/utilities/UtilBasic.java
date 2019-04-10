@@ -37,6 +37,11 @@ public class UtilBasic {
         return numberFormat;
     }
 
+    public static NumberFormat getCurrencyFormat() {
+        if (numberFormat == null) numberFormat = NumberFormat.getCurrencyInstance(Locale.ENGLISH);
+        return numberFormat;
+    }
+
     public static String ObjectToJson(Object obj) {
         if (gs == null) gs = new Gson();
         return gs.toJson(obj);

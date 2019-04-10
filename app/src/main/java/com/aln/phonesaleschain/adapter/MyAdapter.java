@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.listener.OnclickProduct;
 import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
@@ -32,12 +33,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     private GridLayoutManager managerlayout;
     private int resLayout;
     private int idVar;
-    Brandy br = null;
-    Product pr = null;
-    Promotion prom = null;
-    SpeakInform spk = null;
-    Schadule scd = null;
+
     private OnclickBrandy clickListener;
+    private OnclickProduct ProducListener;
 
     private boolean hasSub;
 
@@ -52,6 +50,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         resLayout = resIdlayout;
         managerlayout = new GridLayoutManager(context, column, orient, false);
         idVar = varBinding;
+    }
+
+    public void setProducListener(OnclickProduct listenerproduct) {
+        ProducListener = listenerproduct;
     }
 
     public GridLayoutManager getLayoutManager() {
@@ -70,7 +72,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     public void onBindViewHolder(@NonNull final ItemHolder itemHolder, int i) {
         Object oj = mylist.get(i);
         ItemBindingType(itemHolder, oj);
-
     }
 
     @Override
@@ -104,43 +105,43 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         notifyDataSetChanged();
     }
 
-    void ItemBindingType(ItemHolder itemHolder, Object oj) {
-
+    void ItemBindingType(final ItemHolder itemHolder, Object oj) {
         if (oj instanceof Brandy) {
-            br = (Brandy) oj;
-        }
-        if (oj instanceof Product) {
-            pr = (Product) oj;
-        }
-        if (oj instanceof Promotion) {
-            prom = (Promotion) oj;
-        }
-        if (oj instanceof SpeakInform) {
-            spk = (SpeakInform) oj;
-        }
-        if (oj instanceof Schadule) {
-            scd = (Schadule) oj;
-        }
+            final Brandy br = (Brandy) oj;
 
-        if (br != null)
             itemHolder.getLayoutBind().setVariable(idVar, br);
-        if (pr != null)
-            itemHolder.getLayoutBind().setVariable(idVar, pr);
-        if (prom != null)
-            itemHolder.getLayoutBind().setVariable(idVar, prom);
-        if (spk != null)
-            itemHolder.getLayoutBind().setVariable(idVar, spk);
-        if (scd != null)
-            itemHolder.getLayoutBind().setVariable(idVar, scd);
-
-        itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (hasSub) {
+            itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     clickListener.OnClickBrandy(br);
                 }
-            }
-        });
+            });
+            
+        } else if (oj instanceof Product) {
+            final Product pr = (Product) oj;
+            itemHolder.getLayoutBind().setVariable(idVar, pr);
+
+            itemHolder.getLayoutBind().setVariable(idVar, pr);
+            itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProducListener.onProductClick(pr);
+                }
+            });
+
+        } else if (oj instanceof Promotion) {
+            final Promotion prom = (Promotion) oj;
+            itemHolder.getLayoutBind().setVariable(idVar, prom);
+        } else if (oj instanceof SpeakInform) {
+            final SpeakInform spk = (SpeakInform) oj;
+            itemHolder.getLayoutBind().setVariable(idVar, spk);
+        } else if (oj instanceof Schadule) {
+            final Schadule scd = (Schadule) oj;
+            itemHolder.getLayoutBind().setVariable(idVar, scd);
+        } else if (oj instanceof String) {
+            final String cd = (String) oj;
+            itemHolder.getLayoutBind().setVariable(idVar, cd);
+        }
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {
