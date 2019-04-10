@@ -98,7 +98,7 @@ public class ProductList extends Fragment {
     private void initialize() {
         cl = new ContentVarible();
         fragNews.setNewsPaperlist(cl);
-        myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2);
+        myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2,null);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);

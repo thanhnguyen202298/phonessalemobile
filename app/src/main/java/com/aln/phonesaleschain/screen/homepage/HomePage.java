@@ -42,7 +42,7 @@ public class HomePage extends AppCompatActivity implements ProductActivity.OnPro
     }
 
     @Override
-    public void onProductInteraction(Uri uri) {
+    public void onProductInteraction(String uri, String data, Class type) {
 
     }
 }

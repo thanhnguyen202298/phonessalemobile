@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
-import com.aln.phonesaleschain.screen.fragment_itemlist.ProductList;
 import com.aln.phonesaleschain.utilities.Constants;
 
 public class ListItem extends AppCompatActivity implements ProductActivity.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener {
@@ -46,7 +45,7 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction tf = frgManager.beginTransaction();
-        tf.add(R.id.layoutlist, fragment);
+        tf.replace(R.id.layoutlist, fragment);
         tf.commit();
     }
 
@@ -56,9 +55,10 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
     }
 
     @Override
-    public void onProductInteraction(String uri, Class type) {
-        fragList = ProductList.newInstance(uri,GridLayoutManager.VERTICAL);
+    public void onProductInteraction(String uri, String obj, Class type) {
+        fragList = ProductActivity.newInstance(uri,GridLayoutManager.VERTICAL, obj);
         loadFragment(fragList);
+
     }
 
     @Override

@@ -29,9 +29,12 @@ import com.aln.phonesaleschain.model.UserInfo;
 import com.aln.phonesaleschain.model.order.OrderDetail;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
+import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
 import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
+import com.aln.phonesaleschain.utilities.Constants;
+import com.aln.phonesaleschain.utilities.UtilBasic;
 
 import java.util.List;
 
@@ -52,10 +55,12 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "object";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private int mParam2;
+    private String mParam3;
     private ActivityProductBinding fragNews;
     private OrderMaster master;
     PathApi aconect;
@@ -63,6 +68,8 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     MyAdapter myAdapter;
     ContentVarible cl;
     private OnProductInteractionListener mListener;
+    private Brandy Brandtofind;
+    private Context fragcotx;
 
     public ProductActivity() {
         // Required empty public constructor
@@ -86,12 +93,26 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
         return fragment;
     }
 
+    public static ProductActivity newInstance(String fragname, int orient, String contentParent) {
+        ProductActivity fragment = new ProductActivity();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, fragname);
+        args.putInt(ARG_PARAM2, orient);
+        args.putString(ARG_PARAM3, contentParent);
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getInt(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
+            if (mParam3 != null)
+                Brandtofind = UtilBasic.getGs().fromJson(mParam3, Brandy.class);
         }
         aconect = APIUtils.getService();
     }
@@ -102,18 +123,19 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
         // Inflate the layout for this fragment
         fragNews = DataBindingUtil.inflate(inflater, R.layout.activity_product, container, false);
         initialize();
+        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         return fragNews.getRoot();
     }
 
     private void initialize() {
         cl = new ContentVarible();
         fragNews.setNewsPaperlist(cl);
-        myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2);
+        myAdapter = new MyAdapter(this.getContext(), R.layout.item_vertlarg2, 2, BR.item, mParam2, this);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
 
-        OnScrollCallBack rvSroll = new OnScrollCallBack(30,1) {
+        OnScrollCallBack rvSroll = new OnScrollCallBack(30, 1) {
             @Override
             public Boolean loadMore(int page, int totalItems, RecyclerView v) {
                 loadData(page);
@@ -143,11 +165,14 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
     private void loadData(int page) {
 //        List<ItemVariable> data = new ArrayList<>();
-        if (mParam1.equals("news")) {
+        if (Brandtofind != null)
+            loadProduct(page);
+        else if (mParam1.equals("news")) {
             //loading news
         } else if (mParam1.equals("branch")) {
 
         } else if (mParam1.equals("prod")) {
+            myAdapter.setHasSub(true);
             LoadCate(page);
         } else if (mParam1.equals("notic")) {
             LoadInformNotice(page);
@@ -161,7 +186,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String uri) {
         if (mListener != null) {
-            mListener.onProductInteraction(uri,"".getClass());
+            mListener.onProductInteraction(uri, "", "".getClass());
         }
     }
 
@@ -174,6 +199,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        fragcotx = context;
     }
 
     @Override
@@ -197,14 +223,14 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
             @Override
             public void onFailure(Call<ResultApi<List<Brandy>>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     private void LoadInformNotice(int page) {
-        aconect.getSpeakInform("all","","",page).enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
+        aconect.getSpeakInform("all", "", "", page).enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<SpeakInform>>> call, Response<ResultApi<List<SpeakInform>>> response) {
                 if (response.body() != null) {
@@ -225,7 +251,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
     }
 
     private void LoadSchadule(int page) {
-        aconect.getSchadule(page,"all","","").enqueue(new Callback<ResultApi<List<Schadule>>>() {
+        aconect.getSchadule(page, "all", "", "").enqueue(new Callback<ResultApi<List<Schadule>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Schadule>>> call, Response<ResultApi<List<Schadule>>> response) {
                 if (response.body() != null) {
@@ -245,8 +271,8 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
     }
 
-    private void loadProm(int page){
-        aconect.getPromotion(page,"all").enqueue(new Callback<ResultApi<List<Promotion>>>() {
+    private void loadProm(int page) {
+        aconect.getPromotion(page, "all").enqueue(new Callback<ResultApi<List<Promotion>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Promotion>>> call, Response<ResultApi<List<Promotion>>> response) {
                 if (response.body() != null) {
@@ -265,8 +291,28 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
         });
     }
 
+    private void loadProduct(int page) {
+        aconect.getproductbybrand(page, Brandtofind.BrandId).enqueue(new Callback<ResultApi<List<Product>>>() {
+            @Override
+            public void onResponse(Call<ResultApi<List<Product>>> call, Response<ResultApi<List<Product>>> response) {
+                if (response.body() != null) {
+                    ResultApi rss = response.body();
+                    if (rss.status > 0 && rss.data != null) {
+                        cl.setContent((List<Product>) rss.data);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultApi<List<Product>>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
-    public void OnClickBrandy(View view) {
+    public void OnClickBrandy(Brandy data) {
+        mListener.onProductInteraction("product", UtilBasic.ObjectToJson(data), Brandy.class);
 
     }
 
@@ -277,6 +323,6 @@ public class ProductActivity extends Fragment implements OnclickBrandy, View.OnC
 
     public interface OnProductInteractionListener {
         // TODO: Update argument type and name
-        void onProductInteraction(String obj, Class type);
+        void onProductInteraction(String uri, String data, Class type);
     }
 }

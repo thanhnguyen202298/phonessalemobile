@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,15 +14,13 @@ import android.view.ViewGroup;
 
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
 import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
-import com.aln.phonesaleschain.screen.fragment_itemlist.ProductList;
 import com.aln.phonesaleschain.screen.home.HomeActivity;
-import com.aln.phonesaleschain.utilities.Constants;
-import com.aln.phonesaleschain.utilities.UtilBasic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     Promotion prom = null;
     SpeakInform spk = null;
     Schadule scd = null;
+    private OnclickBrandy clickListener;
 
     private boolean hasSub;
 
@@ -45,9 +45,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         this.hasSub = hasSub;
     }
 
-    public MyAdapter(Context context, int resIdlayout, int column, int varBinding, int orient) {
+    public MyAdapter(Context context, int resIdlayout, int column, int varBinding, int orient, OnclickBrandy mclickListener) {
         mylist = new ArrayList<>();
         base = context;
+        clickListener = mclickListener;
         resLayout = resIdlayout;
         managerlayout = new GridLayoutManager(context, column, orient, false);
         idVar = varBinding;
@@ -136,9 +137,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             @Override
             public void onClick(View v) {
                 if (hasSub) {
-                    Intent it = new Intent(v.getContext(),ProductList.class);
-                    it.putExtra(Constants.KEY_WhatBrandy_Get,UtilBasic.ObjectToJson(br));
-                    v.getContext().startActivity(it);
+                    clickListener.OnClickBrandy(br);
                 }
             }
         });

@@ -26,6 +26,9 @@ public interface PathApi {
     @GET("/api/getproduct")
     Call<ResultApi<List<Product>>> getProduction(@Query("page") int page, @Query("allorid") String idall);
 
+    @GET("/api/getproductbybrand")
+    Call<ResultApi<List<Product>>> getproductbybrand(@Query("page") int page, @Query("allorid") String idall);
+
     @GET("/api/getorder")
     Call<ResultApi<List<OrderMaster>>> getOrder(@Query("page") int page, @Query("allorid") String idall);
 
@@ -35,7 +38,7 @@ public interface PathApi {
 
 
     @GET("/api/getpromotion")
-    Call<ResultApi<List<Promotion>>> getPromotion(@Query("page") int page,@Query("allorid") String idall);
+    Call<ResultApi<List<Promotion>>> getPromotion(@Query("page") int page, @Query("allorid") String idall);
 
 
     @GET("/api/getpromotionbydate")
@@ -51,8 +54,8 @@ public interface PathApi {
     //4/4/2019
 
     @GET("/api/getSpeakInform")
-    Call<ResultApi<List<SpeakInform>>> getSpeakInform(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate,@Query("page") int page);
+    Call<ResultApi<List<SpeakInform>>> getSpeakInform(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate, @Query("page") int page);
 
     @GET("/api/getSchadule")
-    Call<ResultApi<List<Schadule>>> getSchadule(@Query("page") int page,@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);
+    Call<ResultApi<List<Schadule>>> getSchadule(@Query("page") int page, @Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);
 }
