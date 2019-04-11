@@ -41,7 +41,7 @@ public class HomePage extends AppCompatActivity implements ProductFragment.OnPro
     }
 
     @Override
-    public void onProductInteraction(String uri, String data, Class type) {
+    public void onProductInteraction(String data, Class type) {
 
     }
 }

@@ -19,8 +19,7 @@ import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
 import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
-import com.aln.phonesaleschain.listener.OnclickProduct;
-import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
+import com.aln.phonesaleschain.listener.view_listener.OnclickFragment;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
@@ -43,7 +42,7 @@ import retrofit2.Response;
  * Use the {@link ProductFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProductFragment extends Fragment implements OnclickBrandy, OnclickProduct {
+public class ProductFragment extends Fragment implements OnclickFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_PARAM1 = "param1";
@@ -159,7 +158,6 @@ public class ProductFragment extends Fragment implements OnclickBrandy, OnclickP
     private void loadData(int page) {
 //        List<ItemVariable> data = new ArrayList<>();
         if (Brandtofind != null){
-            myAdapter.setProducListener(this);
             loadProduct(page);
         }
         else if (mParam1.equals("news")) {
@@ -168,7 +166,7 @@ public class ProductFragment extends Fragment implements OnclickBrandy, OnclickP
 
         } else if (mParam1.equals("prod")) {
             myAdapter.setHasSub(true);
-            LoadCate(page);
+            LoadBrandy(page);
         } else if (mParam1.equals("notic")) {
             LoadInformNotice(page);
         } else if (mParam1.equals("prom")) {
@@ -181,7 +179,7 @@ public class ProductFragment extends Fragment implements OnclickBrandy, OnclickP
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String uri) {
         if (mListener != null) {
-            mListener.onProductInteraction(uri, "", "".getClass());
+            mListener.onProductInteraction("", "".getClass());
         }
     }
 
@@ -203,7 +201,7 @@ public class ProductFragment extends Fragment implements OnclickBrandy, OnclickP
         mListener = null;
     }
 
-    private void LoadCate(int page) {
+    private void LoadBrandy(int page) {
         aconect.getBrand(page, "all").enqueue(new Callback<ResultApi<List<Brandy>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<Brandy>>> call, Response<ResultApi<List<Brandy>>> response) {
@@ -306,17 +304,12 @@ public class ProductFragment extends Fragment implements OnclickBrandy, OnclickP
     }
 
     @Override
-    public void OnClickBrandy(Brandy data) {
-        mListener.onProductInteraction("product", UtilBasic.ObjectToJson(data), Brandy.class);
-    }
-
-    @Override
-    public void onProductClick(Product product) {
-        mListener.onProductInteraction("productid", UtilBasic.ObjectToJson(product), Product.class);
+    public void OnClickBrandy(Object data) {
+        mListener.onProductInteraction(UtilBasic.ObjectToJson(data), data.getClass());
     }
 
     public interface OnProductInteractionListener {
         // TODO: Update argument type and name
-        void onProductInteraction(String uri, String data, Class type);
+        void onProductInteraction(String data, Class type);
     }
 }
