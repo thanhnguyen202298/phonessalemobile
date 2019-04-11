@@ -14,10 +14,10 @@ import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ItemDetail;
-import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
 import com.aln.phonesaleschain.utilities.Constants;
 
-public class ListItem extends AppCompatActivity implements ProductActivity.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener, ItemDetail.OnItemInteractionListener {
+public class ListItem extends AppCompatActivity implements ProductFragment.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener, ItemDetail.OnItemInteractionListener {
 
     private FragmentManager frgManager;
     private Fragment fragList;
@@ -34,7 +34,7 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
         if (l.equals("acco"))
             fragList = new AccountFragment();
         else
-            fragList = ProductActivity.newInstance(l, GridLayoutManager.VERTICAL);
+            fragList = ProductFragment.newInstance(l, GridLayoutManager.VERTICAL);
         if (getIntent().getStringExtra(Constants.KEY_Label_Screen) != null)
             label.setText(getIntent().getStringExtra(Constants.KEY_Label_Screen));
         loadFragment();
@@ -51,7 +51,7 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
         FragmentTransaction tf = frgManager.beginTransaction();
         tf.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left,R.anim.trans_right_out);
         tf.replace(R.id.layoutlist, fragment);
-        tf.addToBackStack(fragment.getArguments().getString(ProductActivity.ARG_PARAM1));
+        tf.addToBackStack(fragment.getArguments().getString(ProductFragment.ARG_PARAM1));
         tf.commit();
     }
 
@@ -63,7 +63,7 @@ public class ListItem extends AppCompatActivity implements ProductActivity.OnPro
     @Override
     public void onProductInteraction(String uri, String obj, Class type) {
         if (type.equals(Brandy.class))
-            fragList = ProductActivity.newInstance(uri, GridLayoutManager.VERTICAL, obj);
+            fragList = ProductFragment.newInstance(uri, GridLayoutManager.VERTICAL, obj);
         else if(type.equals(Product.class))
             fragList = ItemDetail.newInstance(uri, GridLayoutManager.HORIZONTAL, obj);
         loadFragment(fragList);

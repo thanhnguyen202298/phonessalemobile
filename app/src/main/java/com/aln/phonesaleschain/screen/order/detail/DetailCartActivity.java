@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.databinding.ActivityDetailCartBinding;
-import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
 
 public class DetailCartActivity extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -37,8 +37,8 @@ public class DetailCartActivity extends Fragment {
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductActivity newInstance(String fragname, int orient) {
-        ProductActivity fragment = new ProductActivity();
+    public static ProductFragment newInstance(String fragname, int orient) {
+        ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, fragname);
         args.putInt(ARG_PARAM2, orient);

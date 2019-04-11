@@ -1,13 +1,9 @@
 package com.aln.phonesaleschain.screen.fragment_itemlist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,23 +15,18 @@ import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
 import com.aln.phonesaleschain.adapter.OnScrollCallBack;
 import com.aln.phonesaleschain.customview.ContentVarible;
-import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.databinding.ActivityProductBinding;
-import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
 import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
 import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
 import com.aln.phonesaleschain.listener.OnclickProduct;
 import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
-import com.aln.phonesaleschain.model.UserInfo;
-import com.aln.phonesaleschain.model.order.OrderDetail;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
 import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
-import com.aln.phonesaleschain.utilities.Constants;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 
 import java.util.List;
@@ -47,12 +38,12 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ProductActivity.OnProductInteractionListener} interface
+ * {@link ProductFragment.OnProductInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ProductActivity#newInstance} factory method to
+ * Use the {@link ProductFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProductActivity extends Fragment implements OnclickBrandy, OnclickProduct {
+public class ProductFragment extends Fragment implements OnclickBrandy, OnclickProduct {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_PARAM1 = "param1";
@@ -73,7 +64,7 @@ public class ProductActivity extends Fragment implements OnclickBrandy, OnclickP
     private Brandy Brandtofind;
     private Context fragcotx;
 
-    public ProductActivity() {
+    public ProductFragment() {
         // Required empty public constructor
     }
 
@@ -86,8 +77,8 @@ public class ProductActivity extends Fragment implements OnclickBrandy, OnclickP
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductActivity newInstance(String fragname, int orient) {
-        ProductActivity fragment = new ProductActivity();
+    public static ProductFragment newInstance(String fragname, int orient) {
+        ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, fragname);
         args.putInt(ARG_PARAM2, orient);
@@ -95,8 +86,8 @@ public class ProductActivity extends Fragment implements OnclickBrandy, OnclickP
         return fragment;
     }
 
-    public static ProductActivity newInstance(String fragname, int orient, String contentParent) {
-        ProductActivity fragment = new ProductActivity();
+    public static ProductFragment newInstance(String fragname, int orient, String contentParent) {
+        ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, fragname);
         args.putInt(ARG_PARAM2, orient);

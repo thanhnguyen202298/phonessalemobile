@@ -1,7 +1,6 @@
 package com.aln.phonesaleschain.screen.homepage;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -11,10 +10,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
-import com.aln.phonesaleschain.screen.fragment_itemlist.ProductActivity;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
 
-public class HomePage extends AppCompatActivity implements ProductActivity.OnProductInteractionListener {
-    private ProductActivity newsFrag, cateFrag;
+public class HomePage extends AppCompatActivity implements ProductFragment.OnProductInteractionListener {
+    private ProductFragment newsFrag, cateFrag;
     private FragmentManager frgManager;
 
     @Override
@@ -28,8 +27,8 @@ public class HomePage extends AppCompatActivity implements ProductActivity.OnPro
         TextView label = findViewById(R.id.labelToolbar);
         label.setText(R.string.home_Label);
         frgManager = getSupportFragmentManager();
-        newsFrag = ProductActivity.newInstance("news", GridLayoutManager.HORIZONTAL);
-        cateFrag = ProductActivity.newInstance("prod", GridLayoutManager.HORIZONTAL);
+        newsFrag = ProductFragment.newInstance("news", GridLayoutManager.HORIZONTAL);
+        cateFrag = ProductFragment.newInstance("prod", GridLayoutManager.HORIZONTAL);
         loadFragment();
     }
 
