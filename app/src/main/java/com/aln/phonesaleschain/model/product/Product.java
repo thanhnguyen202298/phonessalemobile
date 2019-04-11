@@ -29,7 +29,7 @@ public class Product extends ItemVariable {
     public String TypeName;
 
     public String getPrice() {
-        return UtilBasic.getNumberFormat().format(Price)+ "đ";
+        return UtilBasic.getNumberFormat().format(Price)+ " đ";
     }
 
     @Override

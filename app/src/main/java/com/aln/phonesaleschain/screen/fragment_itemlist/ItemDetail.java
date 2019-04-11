@@ -49,8 +49,6 @@ public class ItemDetail extends Fragment {
     private OnItemInteractionListener mListener;
 
     ItemDetailBinding itemBinding;
-    PathApi aconect;
-
     MyAdapter myAdapter;
     Product cl;
 
@@ -86,7 +84,6 @@ public class ItemDetail extends Fragment {
             mParam3 = getArguments().getString(ARG_PARAM3);
             cl = UtilBasic.getGs().fromJson(mParam3,Product.class);
         }
-        aconect = APIUtils.getService();
     }
 
     @Override
