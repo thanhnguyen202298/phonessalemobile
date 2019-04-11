@@ -27,5 +27,6 @@
     <color name="colorAccent">#ff4081</color>
     <color name="bgBottomNavigation">#ffb000</color>
     <color name="title">#1f497d</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

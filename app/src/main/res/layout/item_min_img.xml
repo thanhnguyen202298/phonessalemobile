@@ -3,7 +3,7 @@
 <data>
     <variable
         name="itemUrl"
-        type="String"/>
+        type="com.aln.phonesaleschain.model.product.CommonModel"/>
 </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -14,6 +14,6 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:image="@{itemUrl}"/>
+            android:image="@{itemUrl.text}"/>
     </RelativeLayout>
 </layout>

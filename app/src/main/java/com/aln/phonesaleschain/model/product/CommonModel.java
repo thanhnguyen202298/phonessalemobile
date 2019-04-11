@@ -3,11 +3,11 @@ package com.aln.phonesaleschain.model.product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyListItem<T> {
-    public List<T> list;
+public class CommonModel {
     public boolean select;
+    public String text;
 
-    public MyListItem() {
-        this.list = new ArrayList<>();
+    public CommonModel(String text) {
+        this.text = text;
     }
 }

@@ -18,6 +18,7 @@ import com.aln.phonesaleschain.listener.OnImageCLick;
 import com.aln.phonesaleschain.listener.OnclickProduct;
 import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
 import com.aln.phonesaleschain.model.product.Brandy;
+import com.aln.phonesaleschain.model.product.CommonModel;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
@@ -78,6 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     public void onBindViewHolder(@NonNull final ItemHolder itemHolder, int i) {
         Object oj = mylist.get(i);
         ItemBindingType(itemHolder, oj, i);
+
     }
 
     @Override
@@ -116,7 +118,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             final Brandy br = (Brandy) oj;
 
             itemHolder.getLayoutBind().setVariable(idVar, br);
-            itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+            itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     clickListener.OnClickBrandy(br);
@@ -128,7 +130,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             itemHolder.getLayoutBind().setVariable(idVar, pr);
 
             itemHolder.getLayoutBind().setVariable(idVar, pr);
-            itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+            itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ProducListener.onProductClick(pr);
@@ -144,21 +146,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         } else if (oj instanceof Schadule) {
             final Schadule scd = (Schadule) oj;
             itemHolder.getLayoutBind().setVariable(idVar, scd);
-        } else if (oj instanceof String) {
-            final String cd = (String) oj;
+        } else if (oj instanceof CommonModel) {
+            final CommonModel cd = (CommonModel) oj;
             itemHolder.getLayoutBind().setVariable(idVar, cd);
+            cd.select = i == selected;
 
-            itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+            setViewItem(itemHolder.itemView, cd.select);
+            itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    v.setPadding(3, 3, 3, 3);
-                    v.setBackgroundResource(R.color.colorAccent);
-                    imgListener.onClickImage(cd);
                     selected = i;
-
+                    imgListener.onClickImage(cd.text);
+                    notifyDataSetChanged();
                 }
             });
+        }
+    }
+
+    void setViewItem(View v, boolean choose) {
+        if (choose) {
+            v.setPadding(2, 2, 2, 2);
+            v.setBackgroundResource(R.color.colorAccent);
+        } else {
+            v.setPadding(0, 0, 0, 0);
+            v.setBackgroundResource(R.color.transparent);
         }
     }
 
