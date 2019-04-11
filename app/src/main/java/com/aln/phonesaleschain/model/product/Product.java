@@ -70,13 +70,18 @@ public class Product extends BaseObservable implements MyVariable {
         return ImageUrl.substring(0, ImageUrl.indexOf(";"));
     }
 
-    public MyListItem<String> getArrayDrawer() {
-        MyListItem<String> stringsUrl = new MyListItem<>();
+    public List<CommonModel> getArrayDrawer() {
+
+        List<CommonModel> stringsUrl = new ArrayList<>();
         if (ImageUrl == null) return stringsUrl;
         if (!ImageUrl.contains(";")) {
-            stringsUrl.list.add(ImageUrl);
+            stringsUrl.add(new CommonModel(ImageUrl));
         } else {
-            stringsUrl.list.addAll(Arrays.asList(ImageUrl.split(";")));
+            String[] arr = ImageUrl.split(";");
+            for (String s : arr) {
+                final CommonModel model = new CommonModel(s);
+                stringsUrl.add(model);
+            }
         }
         return stringsUrl;
     }
@@ -98,13 +103,17 @@ public class Product extends BaseObservable implements MyVariable {
         return ColorPhone.substring(0, ColorPhone.indexOf(";"));
     }
 
-    public MyListItem<String> getArrayColor() {
-        MyListItem<String> stringsUrl = new MyListItem<>();
+    public List<CommonModel> getArrayColor() {
+        List<CommonModel> stringsUrl = new ArrayList<>();
         if (ColorPhone == null) return stringsUrl;
         if (!ColorPhone.contains(";")) {
-            stringsUrl.list.add(ColorPhone);
+            stringsUrl.add(new CommonModel(ColorPhone));
         } else {
-            stringsUrl.list.addAll(Arrays.asList(ColorPhone.split(";")));
+            String[] arr = ColorPhone.split(";");
+            for (String s : arr) {
+                final CommonModel model = new CommonModel(s);
+                stringsUrl.add(model);
+            }
         }
         return stringsUrl;
     }
