@@ -5,24 +5,14 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
-import com.aln.phonesaleschain.adapter.OnScrollCallBack;
-import com.aln.phonesaleschain.customview.ContentVarible;
-import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 import com.aln.phonesaleschain.databinding.ItemDetailBinding;
-import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
-import com.aln.phonesaleschain.datahelper.webapi.PathApi;
-import com.aln.phonesaleschain.model.order.OrderMaster;
-import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 
@@ -135,6 +125,7 @@ public class ItemDetail extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
     public interface OnItemInteractionListener {
         // TODO: Update argument type and name
         void onItemInteraction(Uri uri);

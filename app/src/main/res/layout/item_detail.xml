@@ -36,6 +36,7 @@
             android:layout_height="80dp"
             android:layout_below="@+id/nameprod"
             android:padding="8dp"
+            android:background="@color/navilight"
             android:data="@{itemdetail.getArrayDrawer}"/>
 
         <LinearLayout
@@ -73,6 +74,7 @@
             android:layout_height="45dp"
             android:layout_below="@+id/colorchoice"
             android:padding="8dp"
+            android:background="@color/navilight"
             android:data="@{itemdetail.getArrayColor}"/>
 
         <LinearLayout
