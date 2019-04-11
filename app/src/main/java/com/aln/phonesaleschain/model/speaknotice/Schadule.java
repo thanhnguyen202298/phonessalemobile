@@ -1,8 +1,9 @@
 package com.aln.phonesaleschain.model.speaknotice;
 
 import com.aln.phonesaleschain.customview.ItemVariable;
+import com.aln.phonesaleschain.customview.MyVariable;
 
-public class Schadule extends ItemVariable {
+public class Schadule implements MyVariable {
     public String SchaduleId;
     public String FromUser;
     public String ToUser;

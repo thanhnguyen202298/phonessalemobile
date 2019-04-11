@@ -1,8 +1,9 @@
 package com.aln.phonesaleschain.model.speaknotice;
 
 import com.aln.phonesaleschain.customview.ItemVariable;
+import com.aln.phonesaleschain.customview.MyVariable;
 
-public class SpeakInform extends ItemVariable {
+public class SpeakInform implements MyVariable {
     //chatcontent
     public String ChatId;
     //informspeakContent

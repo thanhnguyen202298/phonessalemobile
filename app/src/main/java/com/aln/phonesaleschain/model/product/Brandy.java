@@ -1,8 +1,9 @@
 package com.aln.phonesaleschain.model.product;
 
 import com.aln.phonesaleschain.customview.ItemVariable;
+import com.aln.phonesaleschain.customview.MyVariable;
 
-public class Brandy extends ItemVariable {
+public class Brandy implements MyVariable {
     public String BrandId;
     public String BrandName;
     public String Description;

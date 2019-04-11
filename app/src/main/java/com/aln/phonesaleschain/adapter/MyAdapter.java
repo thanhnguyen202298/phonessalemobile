@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.listener.OnImageCLick;
 import com.aln.phonesaleschain.listener.OnclickProduct;
 import com.aln.phonesaleschain.listener.view_listener.OnclickBrandy;
 import com.aln.phonesaleschain.model.product.Brandy;
@@ -36,7 +37,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
 
     private OnclickBrandy clickListener;
     private OnclickProduct ProducListener;
-
+    private OnImageCLick imgListener;
+    private int selected = -1;
     private boolean hasSub;
 
     public void setHasSub(boolean hasSub) {
@@ -56,6 +58,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         ProducListener = listenerproduct;
     }
 
+    public void setImgListener(OnImageCLick listenerproduct) {
+        imgListener = listenerproduct;
+    }
+
     public GridLayoutManager getLayoutManager() {
         return managerlayout;
     }
@@ -71,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
     @Override
     public void onBindViewHolder(@NonNull final ItemHolder itemHolder, int i) {
         Object oj = mylist.get(i);
-        ItemBindingType(itemHolder, oj);
+        ItemBindingType(itemHolder, oj, i);
     }
 
     @Override
@@ -105,7 +111,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         notifyDataSetChanged();
     }
 
-    void ItemBindingType(final ItemHolder itemHolder, Object oj) {
+    void ItemBindingType(final ItemHolder itemHolder, Object oj, final int i) {
         if (oj instanceof Brandy) {
             final Brandy br = (Brandy) oj;
 
@@ -116,7 +122,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
                     clickListener.OnClickBrandy(br);
                 }
             });
-            
+
         } else if (oj instanceof Product) {
             final Product pr = (Product) oj;
             itemHolder.getLayoutBind().setVariable(idVar, pr);
@@ -141,6 +147,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         } else if (oj instanceof String) {
             final String cd = (String) oj;
             itemHolder.getLayoutBind().setVariable(idVar, cd);
+
+            itemHolder.v.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    v.setPadding(3, 3, 3, 3);
+                    v.setBackgroundResource(R.color.colorAccent);
+                    imgListener.onClickImage(cd);
+                    selected = i;
+
+                }
+            });
         }
     }
 

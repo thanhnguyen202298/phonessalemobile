@@ -1,11 +1,6 @@
 package com.aln.phonesaleschain.customview;
 
-import android.view.View;
-
-import com.aln.phonesaleschain.adapter.MyAdapter;
-import com.google.gson.annotations.SerializedName;
-
-public class ItemVariable {
+public class ItemVariable implements MyVariable {
     public String IdDrawer;
     public String Label;
 

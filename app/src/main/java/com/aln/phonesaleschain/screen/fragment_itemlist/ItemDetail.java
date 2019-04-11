@@ -13,8 +13,10 @@ import com.aln.phonesaleschain.BR;
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.adapter.MyAdapter;
 import com.aln.phonesaleschain.databinding.ItemDetailBinding;
+import com.aln.phonesaleschain.listener.OnImageCLick;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.utilities.UtilBasic;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +26,7 @@ import com.aln.phonesaleschain.utilities.UtilBasic;
  * Use the {@link ItemDetail#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ItemDetail extends Fragment {
+public class ItemDetail extends Fragment implements OnImageCLick {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_PARAM1 = "param1";
@@ -51,7 +53,7 @@ public class ItemDetail extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param fragname Parameter 1.
-     * @param orient Parameter 2.
+     * @param orient   Parameter 2.
      * @return A new instance of fragment ItemDetail.
      */
     // TODO: Rename and change types and number of parameters
@@ -72,14 +74,14 @@ public class ItemDetail extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getInt(ARG_PARAM2);
             mParam3 = getArguments().getString(ARG_PARAM3);
-            cl = UtilBasic.getGs().fromJson(mParam3,Product.class);
+            cl = UtilBasic.getGs().fromJson(mParam3, Product.class);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        itemBinding = DataBindingUtil.inflate(inflater,R.layout.item_detail,container,false);
+        itemBinding = DataBindingUtil.inflate(inflater, R.layout.item_detail, container, false);
         initial();
         return itemBinding.getRoot();
     }
@@ -89,12 +91,19 @@ public class ItemDetail extends Fragment {
 
     }
 
-    void initial(){
+    void initial() {
         itemBinding.setItemdetail(cl);
-        myAdapter = new MyAdapter(ctx,R.layout.item_min_img,1,BR.itemUrl, mParam2, null);
+        myAdapter = new MyAdapter(ctx, R.layout.item_min_img, 1, BR.itemUrl, mParam2, null);
         itemBinding.listimg.setHasFixedSize(true);
         itemBinding.listimg.setLayoutManager(myAdapter.getLayoutManager());
         itemBinding.listimg.setAdapter(myAdapter);
+        myAdapter.setImgListener(this);
+
+        MyAdapter colorarrayada = new MyAdapter(ctx, R.layout.item_min_img, 1, BR.itemUrl, mParam2, null);
+        itemBinding.listcolor.setHasFixedSize(true);
+        itemBinding.listcolor.setLayoutManager(colorarrayada.getLayoutManager());
+        itemBinding.listcolor.setAdapter(colorarrayada);
+        colorarrayada.setImgListener(this);
     }
 
     @Override
@@ -113,6 +122,13 @@ public class ItemDetail extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClickImage(String uri) {
+        if (uri.length() < 10) {
+            cl.setSelectedColor(uri);
+        } else cl.setSelectedImg(uri);
     }
 
     /**

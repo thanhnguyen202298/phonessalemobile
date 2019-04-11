@@ -1,9 +1,10 @@
 package com.aln.phonesaleschain.model.product;
 
 import com.aln.phonesaleschain.customview.ItemVariable;
+import com.aln.phonesaleschain.customview.MyVariable;
 import com.google.gson.annotations.SerializedName;
 
-public class Promotion extends ItemVariable {
+public class Promotion implements MyVariable {
     public String PromotionCode;
     @SerializedName("Name")
     public String NamePro;
