@@ -13,7 +13,6 @@ import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.model.CommonModel;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
-import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.screen.Presentation.PresentFragment;
 import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ItemDetail;
