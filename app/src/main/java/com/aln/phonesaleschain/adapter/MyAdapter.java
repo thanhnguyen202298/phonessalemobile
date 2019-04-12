@@ -121,7 +121,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             final Product pr = (Product) oj;
             itemHolder.getLayoutBind().setVariable(idVar, pr);
 
-            itemHolder.getLayoutBind().setVariable(idVar, pr);
             itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -133,27 +132,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             final Promotion prom = (Promotion) oj;
             itemHolder.getLayoutBind().setVariable(idVar, prom);
 
-//            mytem.content =
-            itemHolder.getLayoutBind().setVariable(idVar, prom);
             itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonModel mytem = new CommonModel(base.getString(R.string.From) + " " + prom.FromDate.substring(0,11) + " " + base.getString(R.string.To) + " " + prom.ToDate.substring(0,11));
+
+                    //<editor-fold desc="initial data">
+                    CommonModel mytem = new CommonModel(base.getString(R.string.Fromdate) + " " + prom.FromDate.substring(0, 11) + " " + base.getString(R.string.Todate) + " " + prom.ToDate.substring(0, 11));
                     mytem.title = prom.NamePro;
                     mytem.content = "";
+                    mytem.mLabel = base.getString(R.string.promotion_label);
 
                     if (prom.Quantity != 0)
-                        mytem.content += base.getString(R.string.whenbuy)+" " + prom.Quantity+" " + prom.ProductRange+ "\n";
+                        mytem.content += base.getString(R.string.whenbuy) + " " + prom.Quantity + " " + prom.ProductRange + "\n";
                     else
-                        mytem.content += base.getString(R.string.whenbuy)+" " + prom.ProductRange+ "\n";
+                        mytem.content += base.getString(R.string.whenbuy) + " " + prom.ProductRange + "\n";
                     if (prom.DiscountPercent != 0)
-                        mytem.content += base.getString(R.string.getprom)+" " + prom.DiscountPercent+ "\n";
+                        mytem.content += base.getString(R.string.getprom) + " " + prom.DiscountPercent + "\n";
                     else if (prom.Discount != 0)
-                        mytem.content += base.getString(R.string.getprom)+" " + prom.Discount+ "\n";
+                        mytem.content += base.getString(R.string.getprom) + " " + prom.Discount + "\n";
                     else if (prom.ProductAllowBuy != null)
-                        mytem.content += base.getString(R.string.canbuy)+" " + prom.ProductAllowBuy + "\n";
+                        mytem.content += base.getString(R.string.canbuy) + " " + prom.ProductAllowBuy + "\n";
                     if (prom.ProductMustBuy != null)
-                        mytem.content += base.getString(R.string.roleprom)+" " + prom.ProductMustBuy;
+                        mytem.content += base.getString(R.string.roleprom) + " " + prom.ProductMustBuy;
+
+                    //</editor-fold>
 
                     clickListener.OnClickBrandy(mytem);
                 }
@@ -161,8 +163,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
 
         } else if (oj instanceof SpeakInform) {
             final SpeakInform spk = (SpeakInform) oj;
-            itemHolder.getLayoutBind().setVariable(idVar, spk);
-
             itemHolder.getLayoutBind().setVariable(idVar, spk);
             itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -175,11 +175,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             final Schadule scd = (Schadule) oj;
             itemHolder.getLayoutBind().setVariable(idVar, scd);
 
-            itemHolder.getLayoutBind().setVariable(idVar, scd);
             itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickListener.OnClickBrandy(scd);
+                    //<editor-fold desc="initial data">
+                    CommonModel mytem = new CommonModel(base.getString(R.string.From2) + " " + scd.DateOnSchadule);
+                    mytem.title = scd.SchaduleName;
+                    mytem.content = scd.ContentMsg;
+                    mytem.mLabel = base.getString(R.string.schadule_Label);
+                    //</editor-fold>
+
+                    clickListener.OnClickBrandy(mytem);
                 }
             });
 

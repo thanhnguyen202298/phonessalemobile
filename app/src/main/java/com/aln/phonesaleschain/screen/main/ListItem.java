@@ -19,6 +19,7 @@ import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ItemDetail;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
 import com.aln.phonesaleschain.utilities.Constants;
+import com.aln.phonesaleschain.utilities.UtilBasic;
 
 public class ListItem extends AppCompatActivity implements ProductFragment.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener, ItemDetail.OnItemInteractionListener , PresentFragment.OnPresentInteractionListener {
 
@@ -36,8 +37,11 @@ public class ListItem extends AppCompatActivity implements ProductFragment.OnPro
         String l = getScreenName();
         if (l.equals("acco"))
             fragList = new AccountFragment();
+        else if(l.equals("present"))
+            fragList = PresentFragment.newInstance(l, null);
         else
             fragList = ProductFragment.newInstance(l, GridLayoutManager.VERTICAL);
+
         if (getIntent().getStringExtra(Constants.KEY_Label_Screen) != null)
             label.setText(getIntent().getStringExtra(Constants.KEY_Label_Screen));
         loadFragment();
@@ -70,12 +74,12 @@ public class ListItem extends AppCompatActivity implements ProductFragment.OnPro
         else if(type.equals(Product.class))
             fragList = ItemDetail.newInstance("productid", GridLayoutManager.HORIZONTAL, obj);
         else if(type.equals(CommonModel.class)){
-            label.setText(getString(R.string.promotion_label));
+            CommonModel m = UtilBasic.getGs().fromJson(obj,CommonModel.class);
+            label.setText(m.mLabel);
             fragList = PresentFragment.newInstance("productid", obj);
         }
 
         loadFragment(fragList);
-
     }
 
     @Override

@@ -10,17 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
-import com.aln.phonesaleschain.adapter.MyAdapter;
-import com.aln.phonesaleschain.customview.ContentVarible;
 import com.aln.phonesaleschain.customview.ItemImageText;
-import com.aln.phonesaleschain.databinding.ActivityProductBinding;
-import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
-import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.model.CommonModel;
-import com.aln.phonesaleschain.model.order.OrderMaster;
-import com.aln.phonesaleschain.model.product.Brandy;
-import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
-import com.aln.phonesaleschain.utilities.Constants;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 
 /**
@@ -75,6 +66,12 @@ public class PresentFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
             if (mParam2 != null)
                 data = UtilBasic.getGs().fromJson(mParam2, CommonModel.class);
+            else {
+
+                data = new CommonModel(getString(R.string.telll));
+                data.title = getString(R.string.address);
+                data.content = getString(R.string.compani_present);
+            }
         }
     }
 
@@ -121,8 +118,8 @@ public class PresentFragment extends Fragment {
 
         TextView txt = v.findViewById(R.id.contenshow);
         txt.setText(data.content);
-        telview.setLabel(data.title);
-        addressview.setLabel(data.text);
+        telview.setLabel(data.text);
+        addressview.setLabel(data.title);
 
     }
 

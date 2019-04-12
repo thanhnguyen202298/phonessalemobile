@@ -18,12 +18,18 @@
     <string name="news_menu">Tin tức</string>
     <string name="buynow">Mua ngay</string>
     <string name="chat_menu">Chat</string>
+    <string name="telll">0978666</string>
+    <string name="address">186 pvd hcm</string>
+    <string name="compani_present">An Lộc Nguyên</string>
+
     <string name="account_menu">Tài Khoản</string>
     <string name="notice_menu">Thông báo</string>
     <string name="branch_menu">Chi nhánh</string>
     <string name="color_select">Chọn màu sắc</string>
-    <string name="From"> Từ ngày </string>
-    <string name="To"> Đến ngày </string>
+    <string name="Fromdate"> Từ ngày </string>
+    <string name="From2"> Từ </string>
+    <string name="Todate"> Đến ngày </string>
+    <string name="To2"> Đến </string>
     <string name="whenbuy">khi mua</string>
     <string name="productbuy">sản phẩm</string>
     <string name="getprom">được khuyến mãi</string>

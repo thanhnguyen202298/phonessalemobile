@@ -8,6 +8,7 @@ public class CommonModel {
     public String text;
     public String title;
     public String content;
+    public String mLabel;
 
     public CommonModel(String text) {
         this.text = text;

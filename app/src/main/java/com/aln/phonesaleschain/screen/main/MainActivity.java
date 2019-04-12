@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent it = new Intent();
         switch (v.getId()) {
             case R.id.menuitem1:
-                it = new Intent(this, PresentActivity.class);
+                it = new Intent(this, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "present");
+                it.putExtra(Constants.KEY_Label_Screen,getResources().getString(R.string.present_label));
                 startActivity(it);
                 break;
 
