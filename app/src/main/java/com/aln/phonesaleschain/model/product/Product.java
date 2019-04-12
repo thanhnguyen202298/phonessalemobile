@@ -2,18 +2,14 @@ package com.aln.phonesaleschain.model.product;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.graphics.Color;
 
 import com.aln.phonesaleschain.BR;
-import com.aln.phonesaleschain.R;
-import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.customview.MyVariable;
+import com.aln.phonesaleschain.model.CommonModel;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 import com.google.gson.annotations.SerializedName;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Product extends BaseObservable implements MyVariable {

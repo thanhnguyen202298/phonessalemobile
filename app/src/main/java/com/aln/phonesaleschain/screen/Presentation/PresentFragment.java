@@ -10,14 +10,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.adapter.MyAdapter;
+import com.aln.phonesaleschain.customview.ContentVarible;
 import com.aln.phonesaleschain.customview.ItemImageText;
+import com.aln.phonesaleschain.databinding.ActivityProductBinding;
 import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
+import com.aln.phonesaleschain.datahelper.webapi.PathApi;
+import com.aln.phonesaleschain.model.CommonModel;
+import com.aln.phonesaleschain.model.order.OrderMaster;
+import com.aln.phonesaleschain.model.product.Brandy;
+import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
 import com.aln.phonesaleschain.utilities.Constants;
+import com.aln.phonesaleschain.utilities.UtilBasic;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PresentFragment.OnFragmentInteractionListener} interface
+ * {@link PresentFragment} interface
  * to handle interaction events.
  * Use the {@link PresentFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -25,14 +34,16 @@ import com.aln.phonesaleschain.utilities.Constants;
 public class PresentFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "object";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    private ItemImageText addressview, telview;
+    CommonModel data;
+    private OnPresentInteractionListener mListener;
+    private Context context;
 
     public PresentFragment() {
         // Required empty public constructor
@@ -42,16 +53,16 @@ public class PresentFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param fragmane Parameter 1.
+     * @param object   Parameter 2.
      * @return A new instance of fragment PresentFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PresentFragment newInstance(String param1, String param2) {
+    public static PresentFragment newInstance(String fragmane, String object) {
         PresentFragment fragment = new PresentFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, fragmane);
+        args.putString(ARG_PARAM2, object);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,28 +73,24 @@ public class PresentFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            if (mParam2 != null)
+                data = UtilBasic.getGs().fromJson(mParam2, CommonModel.class);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.present_acty,container,false);
+        View v = inflater.inflate(R.layout.content_present, container, false);
+        init(v);
         return v;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnPresentInteractionListener) {
+            mListener = (OnPresentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -108,26 +115,19 @@ public class PresentFragment extends Fragment {
      */
 
     void init(View v) {
-//        addressview = new ItemImageText(v.fin, R.id.address, null);
-//        telview = new ItemImageText(this, R.id.tel, null);
-//        telview.setIdDrawerable(R.drawable.ic_call_navi_24dp);
-//
-//        TextView la = findViewById(R.id.labelToolbar);
-//        la.setText(R.string.present_label);
-//        String s = getIntent().getStringExtra(Constants.KEY_CONTENT);
-//        TextView txt = findViewById(R.id.contenshow);
-//        txt.setText(s);
-//
-//        s = PreferenceUtils.getContent(Constants.KEY_TEL);
-//        telview.setLabel(s);
-//
-//        s = PreferenceUtils.getContent(Constants.KEY_COMADDRESS);
-//        addressview.setLabel(s);
+        addressview = new ItemImageText(v, R.id.address, null);
+        telview = new ItemImageText(v, R.id.tel, null);
+        telview.setIdDrawerable(R.drawable.ic_call_navi_24dp);
+
+        TextView txt = v.findViewById(R.id.contenshow);
+        txt.setText(data.content);
+        telview.setLabel(data.title);
+        addressview.setLabel(data.text);
 
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnPresentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onPresentInteraction(Uri uri);
     }
 }

@@ -15,7 +15,7 @@ import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.listener.OnImageCLick;
 import com.aln.phonesaleschain.listener.view_listener.OnclickFragment;
 import com.aln.phonesaleschain.model.product.Brandy;
-import com.aln.phonesaleschain.model.product.CommonModel;
+import com.aln.phonesaleschain.model.CommonModel;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
 import com.aln.phonesaleschain.model.speaknotice.Schadule;
@@ -133,11 +133,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             final Promotion prom = (Promotion) oj;
             itemHolder.getLayoutBind().setVariable(idVar, prom);
 
+//            mytem.content =
             itemHolder.getLayoutBind().setVariable(idVar, prom);
             itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickListener.OnClickBrandy(prom);
+                    CommonModel mytem = new CommonModel(base.getString(R.string.From) + " " + prom.FromDate.substring(0,11) + " " + base.getString(R.string.To) + " " + prom.ToDate.substring(0,11));
+                    mytem.title = prom.NamePro;
+                    mytem.content = "";
+
+                    if (prom.Quantity != 0)
+                        mytem.content += base.getString(R.string.whenbuy)+" " + prom.Quantity+" " + prom.ProductRange+ "\n";
+                    else
+                        mytem.content += base.getString(R.string.whenbuy)+" " + prom.ProductRange+ "\n";
+                    if (prom.DiscountPercent != 0)
+                        mytem.content += base.getString(R.string.getprom)+" " + prom.DiscountPercent+ "\n";
+                    else if (prom.Discount != 0)
+                        mytem.content += base.getString(R.string.getprom)+" " + prom.Discount+ "\n";
+                    else if (prom.ProductAllowBuy != null)
+                        mytem.content += base.getString(R.string.canbuy)+" " + prom.ProductAllowBuy + "\n";
+                    if (prom.ProductMustBuy != null)
+                        mytem.content += base.getString(R.string.roleprom)+" " + prom.ProductMustBuy;
+
+                    clickListener.OnClickBrandy(mytem);
                 }
             });
 

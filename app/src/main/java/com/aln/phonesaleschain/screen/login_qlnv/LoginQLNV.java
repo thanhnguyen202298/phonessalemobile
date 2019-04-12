@@ -49,7 +49,7 @@ public class LoginQLNV extends TiActivity<LoginPresenterQLnv, LoginView> impleme
     }
 
     private void navigationUserScreen(UserInfo usn) {
-        WakeServiceSSk.onWWake(LoginQLNV.this, usn.EmployeeCode);
+//        WakeServiceSSk.onWWake(LoginQLNV.this, usn.EmployeeCode);
         Intent navigateToUser = new Intent(LoginQLNV.this, MainActivity.class);
         navigateToUser.putExtra("Name", usn.EmployeeName);
         navigateToUser.putExtra("Depart", usn.DivisionName);

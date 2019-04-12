@@ -61,7 +61,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
     ContentVarible cl;
     private OnProductInteractionListener mListener;
     private Brandy Brandtofind;
-    private Context fragcotx;
+    private Context context;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -122,7 +122,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
     private void initialize() {
         cl = new ContentVarible();
         fragNews.setNewsPaperlist(cl);
-        myAdapter = new MyAdapter(fragcotx, R.layout.item_vertlarg2, 2, BR.item, mParam2, this);
+        myAdapter = new MyAdapter(context, R.layout.item_vertlarg2, 2, BR.item, mParam2, this);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
@@ -192,7 +192,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-        fragcotx = context;
+        this.context = context;
     }
 
     @Override
@@ -216,7 +216,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
 
             @Override
             public void onFailure(Call<ResultApi<List<Brandy>>> call, Throwable t) {
-                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -237,7 +237,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
 
             @Override
             public void onFailure(Call<ResultApi<List<SpeakInform>>> call, Throwable t) {
-                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -258,7 +258,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
 
             @Override
             public void onFailure(Call<ResultApi<List<Schadule>>> call, Throwable t) {
-                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -279,7 +279,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
 
             @Override
             public void onFailure(Call<ResultApi<List<Promotion>>> call, Throwable t) {
-                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -298,7 +298,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
 
             @Override
             public void onFailure(Call<ResultApi<List<Product>>> call, Throwable t) {
-                Toast.makeText(fragcotx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

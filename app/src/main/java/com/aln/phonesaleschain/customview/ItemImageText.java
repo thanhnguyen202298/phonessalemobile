@@ -7,7 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+/*
+* for using one layout in a View, but no list
+* it wil find by parent id and set content to all text, Image
+*
+* by Thành Nguyễn Trung @mail: victo202298@gmail.com
+* */
 public class ItemImageText<I extends ImageView, P extends ViewGroup> {
     P selfView;
     private TextView txt;
@@ -15,6 +20,14 @@ public class ItemImageText<I extends ImageView, P extends ViewGroup> {
     private int idDrawerable;
 
     public ItemImageText(Activity parent, int ResId, View.OnClickListener m_listen) {
+        selfView = parent.findViewById(ResId);
+        selfView.setOnClickListener(m_listen);
+        setupChildView(selfView);
+        if (img == null)
+            throw new IllegalArgumentException("Failed in layout");
+    }
+
+    public ItemImageText(View parent, int ResId, View.OnClickListener m_listen) {
         selfView = parent.findViewById(ResId);
         selfView.setOnClickListener(m_listen);
         setupChildView(selfView);

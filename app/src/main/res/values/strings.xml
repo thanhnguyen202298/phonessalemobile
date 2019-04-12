@@ -22,6 +22,13 @@
     <string name="notice_menu">Thông báo</string>
     <string name="branch_menu">Chi nhánh</string>
     <string name="color_select">Chọn màu sắc</string>
+    <string name="From"> Từ ngày </string>
+    <string name="To"> Đến ngày </string>
+    <string name="whenbuy">khi mua</string>
+    <string name="productbuy">sản phẩm</string>
+    <string name="getprom">được khuyến mãi</string>
+    <string name="canbuy">được mua</string>
+    <string name="roleprom">điều kiện:</string>
     <string name="Currency"> đ</string>
 
     <!-- TODO: Remove or change this placeholder text -->

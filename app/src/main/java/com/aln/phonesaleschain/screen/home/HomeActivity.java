@@ -41,7 +41,7 @@ public class HomeActivity extends TiActivity<LoginPresenter,LoginView> implement
             finish();
         } else {
             //check with group id # 1 & 2
-            WakeServiceSSk.onWWake(HomeActivity.this, userInfo.EmployeeCode);
+//            WakeServiceSSk.onWWake(HomeActivity.this, userInfo.EmployeeCode);
             Intent navigateToUser = new Intent(HomeActivity.this, MainActivity.class);
             navigateToUser.putExtra("Name", userInfo.EmployeeName);
             navigateToUser.putExtra("Depart", userInfo.DivisionName);

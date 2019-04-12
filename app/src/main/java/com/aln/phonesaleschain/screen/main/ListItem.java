@@ -10,15 +10,17 @@ import android.support.v7.widget.GridLayoutManager;
 import android.widget.TextView;
 
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.model.CommonModel;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
 import com.aln.phonesaleschain.model.product.Promotion;
+import com.aln.phonesaleschain.screen.Presentation.PresentFragment;
 import com.aln.phonesaleschain.screen.accountfrag.AccountFragment;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ItemDetail;
 import com.aln.phonesaleschain.screen.fragment_itemlist.ProductFragment;
 import com.aln.phonesaleschain.utilities.Constants;
 
-public class ListItem extends AppCompatActivity implements ProductFragment.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener, ItemDetail.OnItemInteractionListener {
+public class ListItem extends AppCompatActivity implements ProductFragment.OnProductInteractionListener, AccountFragment.OnAccountInteractionListener, ItemDetail.OnItemInteractionListener , PresentFragment.OnPresentInteractionListener {
 
     private FragmentManager frgManager;
     private Fragment fragList;
@@ -67,8 +69,10 @@ public class ListItem extends AppCompatActivity implements ProductFragment.OnPro
             fragList = ProductFragment.newInstance("product", GridLayoutManager.VERTICAL, obj);
         else if(type.equals(Product.class))
             fragList = ItemDetail.newInstance("productid", GridLayoutManager.HORIZONTAL, obj);
-        else if(type.equals(Promotion.class))
-            fragList = ItemDetail.newInstance("productid", GridLayoutManager.HORIZONTAL, obj);
+        else if(type.equals(CommonModel.class)){
+            label.setText(getString(R.string.promotion_label));
+            fragList = PresentFragment.newInstance("productid", obj);
+        }
 
         loadFragment(fragList);
 
@@ -81,6 +85,11 @@ public class ListItem extends AppCompatActivity implements ProductFragment.OnPro
 
     @Override
     public void onItemInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onPresentInteraction(Uri uri) {
 
     }
 }
