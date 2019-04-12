@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import com.aln.phonesaleschain.R;
 import com.aln.phonesaleschain.customview.ItemImageText;
-import com.aln.phonesaleschain.screen.Presentation.PresentActivity;
-import com.aln.phonesaleschain.screen.homepage.HomePage;
 import com.aln.phonesaleschain.screen.main.ListItem;
 
 public class ViewDlg implements View.OnClickListener {

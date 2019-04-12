@@ -34,7 +34,6 @@
         <activity android:name=".screen.login_qlnv.LoginQLNV" />
         <activity android:name=".screen.home.HomeActivity" />
         <activity android:name=".screen.homepage.HomePage"/>
-        <activity android:name=".screen.Presentation.PresentActivity" />
         <activity
             android:name=".screen.main.testmenu"
             android:label="@string/title_activity_main2" />
