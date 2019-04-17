@@ -173,6 +173,8 @@ public class ProductFragment extends Fragment implements OnclickFragment {
             loadProm(page);
         } else if (mParam1.equals("scha")) {
             LoadSchadule(page);
+        } else if (mParam1.equals("chat")) {
+            loadChatMsg(page,"");
         }
     }
 
