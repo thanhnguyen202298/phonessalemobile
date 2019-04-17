@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="chatcontent"
+            type="com.aln.phonesaleschain.model.ChatIt"/>
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/chat_margin_parent">
+
+    <TextView
+        android:id="@+id/msgcome"
+        android:layout_alignParentLeft="true"
+        android:textAlignment="textStart"
+        android:text="@{chatcontent.text}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/chat_margin_item"
+        android:background="@drawable/background_border_chat"/>
+
+    <TextView
+        android:id="@+id/msggo"
+        android:layout_alignParentRight="true"
+        android:textAlignment="textEnd"
+        android:text="@{chatcontent.title}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/chat_margin_item"
+        android:background="@drawable/background_border_chatgo"/>
+</RelativeLayout>
+</layout>

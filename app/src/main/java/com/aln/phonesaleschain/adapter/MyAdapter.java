@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aln.phonesaleschain.R;
+import com.aln.phonesaleschain.databinding.ChatLayoutBinding;
 import com.aln.phonesaleschain.listener.OnImageCLick;
 import com.aln.phonesaleschain.listener.view_listener.OnclickFragment;
+import com.aln.phonesaleschain.model.ChatIt;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.CommonModel;
 import com.aln.phonesaleschain.model.product.Product;
@@ -156,7 +158,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
                         mytem.content += base.getString(R.string.roleprom) + " " + prom.ProductMustBuy;
 
                     //</editor-fold>
-
                     clickListener.OnClickBrandy(mytem);
                 }
             });
@@ -184,7 +185,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
                     mytem.content = scd.ContentMsg;
                     mytem.mLabel = base.getString(R.string.schadule_Label);
                     //</editor-fold>
-
                     clickListener.OnClickBrandy(mytem);
                 }
             });
@@ -203,6 +203,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
                     notifyDataSetChanged();
                 }
             });
+        } else if (oj instanceof ChatIt) {
+            ChatLayoutBinding vb = (ChatLayoutBinding) itemHolder.getLayoutBind();
+            final ChatIt chat = (ChatIt) oj;
+            boolean isgo = (chat.text == null || chat.text.equals(""));
+            setShow(vb.msgcome, !isgo);
+            setShow(vb.msggo, isgo);
         }
     }
 
@@ -214,6 +220,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
             v.setPadding(0, 0, 0, 0);
             v.setBackgroundResource(R.color.transparent);
         }
+    }
+
+    void setShow(View v, boolean show) {
+        if (show) v.setVisibility(View.VISIBLE);
+        else v.setVisibility(View.GONE);
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {

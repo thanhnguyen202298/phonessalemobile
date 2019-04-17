@@ -89,11 +89,11 @@ public class ViewDlg implements View.OnClickListener {
 
                 break;
 
-//            case R.id.chat:
-//                it = new Intent(ctx, ListItem.class);
-//                it.putExtra(Constants.KEY_SCREEN, "chat");
-//                ctx.startActivity(it);
-//                break;
+            case R.id.chat:
+                it = new Intent(ctx, ListItem.class);
+                it.putExtra(Constants.KEY_SCREEN, "chat");
+                ctx.startActivity(it);
+                break;
 
         }
 

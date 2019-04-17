@@ -303,6 +303,10 @@ public class ProductFragment extends Fragment implements OnclickFragment {
         });
     }
 
+    private void loadChatMsg(int page, String fromdate){
+//        aconect
+    }
+
     @Override
     public void OnClickBrandy(Object data) {
         mListener.onProductInteraction(UtilBasic.ObjectToJson(data), data.getClass());

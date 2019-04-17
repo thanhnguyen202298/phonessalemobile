@@ -38,10 +38,14 @@ public class ListItem extends AppCompatActivity implements ProductFragment.OnPro
             fragList = new AccountFragment();
         else if(l.equals("present"))
             fragList = PresentFragment.newInstance(l, null);
+        else if(l.equals("chat"))
+            fragList = ProductFragment.newInstance(l,GridLayoutManager.VERTICAL);
         else
             fragList = ProductFragment.newInstance(l, GridLayoutManager.VERTICAL);
 
-        if (getIntent().getStringExtra(Constants.KEY_Label_Screen) != null)
+        if(l.equals("chat"))
+            label.setText(getString(R.string.compani_present));
+        else if (getIntent().getStringExtra(Constants.KEY_Label_Screen) != null)
             label.setText(getIntent().getStringExtra(Constants.KEY_Label_Screen));
         loadFragment();
     }
