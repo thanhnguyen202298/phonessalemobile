@@ -306,7 +306,23 @@ public class ProductFragment extends Fragment implements OnclickFragment {
     }
 
     private void loadChatMsg(int page, String fromdate){
-//        aconect
+        aconect.getChatMsg("","",page).enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
+            @Override
+            public void onResponse(Call<ResultApi<List<SpeakInform>>> call, Response<ResultApi<List<SpeakInform>>> response) {
+
+                if (response.body() != null) {
+                    ResultApi rss = response.body();
+                    if (rss.status > 0 && rss.data != null) {
+                        cl.setContent((List<SpeakInform>) rss.data);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultApi<List<SpeakInform>>> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
