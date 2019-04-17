@@ -56,6 +56,9 @@ public interface PathApi {
     @GET("/api/getSpeakInform")
     Call<ResultApi<List<SpeakInform>>> getSpeakInform(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate, @Query("page") int page);
 
+    @GET("/api/getChatMsg")
+    Call<ResultApi<List<SpeakInform>>> getChatMsg(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("page") int page);
+
     @GET("/api/getSchadule")
     Call<ResultApi<List<Schadule>>> getSchadule(@Query("page") int page, @Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);
 }
