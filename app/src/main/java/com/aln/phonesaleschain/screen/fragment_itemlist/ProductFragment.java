@@ -143,6 +143,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
             res = R.layout.chat_layout;
             fragNews.mynews.setBackgroundColor(getResources().getColor(R.color.navilight));
             fragNews.contentsend.setVisibility(View.VISIBLE);
+            fragNews.send.setVisibility(View.VISIBLE);
         }
         myAdapter = new MyAdapter(context, res, mParam4, BR.item, mParam2, this);
         fragNews.mynews.setHasFixedSize(true);
