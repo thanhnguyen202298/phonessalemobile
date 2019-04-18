@@ -1,8 +1,16 @@
 package com.aln.phonesaleschain.model;
 
-public class ChatIt extends CommonModel {
+import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
+
+public class ChatIt extends SpeakInform {
     private boolean isChat = true;
-    public ChatIt(String text) {
-        super(text);
+    public String Replying;
+    public String getReplying() {
+        return Replying;
+    }
+
+    @Override
+    public String getLabel() {
+        return super.getLabel();
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.aln.phonesaleschain.datahelper.webapi.APIUtils;
 import com.aln.phonesaleschain.datahelper.webapi.PathApi;
 import com.aln.phonesaleschain.datahelper.webapi.ResultApi;
 import com.aln.phonesaleschain.listener.view_listener.OnclickFragment;
+import com.aln.phonesaleschain.model.ChatIt;
 import com.aln.phonesaleschain.model.order.OrderMaster;
 import com.aln.phonesaleschain.model.product.Brandy;
 import com.aln.phonesaleschain.model.product.Product;
@@ -28,6 +30,8 @@ import com.aln.phonesaleschain.model.speaknotice.Schadule;
 import com.aln.phonesaleschain.model.speaknotice.SpeakInform;
 import com.aln.phonesaleschain.utilities.UtilBasic;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,14 +49,16 @@ import retrofit2.Response;
 public class ProductFragment extends Fragment implements OnclickFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private static final String ARG_PARAM3 = "object";
+    public static final String ARG_PARAM1 = "name";//name
+    private static final String ARG_PARAM2 = "orient";//orient
+    private static final String ARG_PARAM3 = "object";//data
+    private static final String ARG_PARAM4 = "column";//cokum
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private int mParam2;
     private String mParam3;
+    private int mParam4;
     private ActivityProductBinding fragNews;
     private OrderMaster master;
     PathApi aconect;
@@ -84,6 +90,15 @@ public class ProductFragment extends Fragment implements OnclickFragment {
         fragment.setArguments(args);
         return fragment;
     }
+    public static ProductFragment newInstance(String fragname, int orient, int colum) {
+        ProductFragment fragment = new ProductFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, fragname);
+        args.putInt(ARG_PARAM2, orient);
+        args.putInt(ARG_PARAM4, colum);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     public static ProductFragment newInstance(String fragname, int orient, String contentParent) {
         ProductFragment fragment = new ProductFragment();
@@ -101,8 +116,9 @@ public class ProductFragment extends Fragment implements OnclickFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getInt(ARG_PARAM2);
+            mParam2 = getArguments().getInt(ARG_PARAM2, GridLayoutManager.VERTICAL);
             mParam3 = getArguments().getString(ARG_PARAM3);
+            mParam4 = getArguments().getInt(ARG_PARAM4,2);
             if (mParam3 != null)
                 Brandtofind = UtilBasic.getGs().fromJson(mParam3, Brandy.class);
         }
@@ -122,7 +138,13 @@ public class ProductFragment extends Fragment implements OnclickFragment {
     private void initialize() {
         cl = new ContentVarible();
         fragNews.setNewsPaperlist(cl);
-        myAdapter = new MyAdapter(context, R.layout.item_vertlarg2, 2, BR.item, mParam2, this);
+        int res = R.layout.item_vertlarg2;
+        if (mParam1.equals("chat")) {
+            res = R.layout.chat_layout;
+            fragNews.mynews.setBackgroundColor(getResources().getColor(R.color.navilight));
+            fragNews.contentsend.setVisibility(View.VISIBLE);
+        }
+        myAdapter = new MyAdapter(context, res, mParam4, BR.item, mParam2, this);
         fragNews.mynews.setHasFixedSize(true);
         fragNews.mynews.setLayoutManager(myAdapter.getLayoutManager());
         fragNews.mynews.setAdapter(myAdapter);
@@ -157,10 +179,9 @@ public class ProductFragment extends Fragment implements OnclickFragment {
 
     private void loadData(int page) {
 //        List<ItemVariable> data = new ArrayList<>();
-        if (Brandtofind != null){
+        if (Brandtofind != null) {
             loadProduct(page);
-        }
-        else if (mParam1.equals("news")) {
+        } else if (mParam1.equals("news")) {
             //loading news
         } else if (mParam1.equals("branch")) {
 
@@ -174,7 +195,7 @@ public class ProductFragment extends Fragment implements OnclickFragment {
         } else if (mParam1.equals("scha")) {
             LoadSchadule(page);
         } else if (mParam1.equals("chat")) {
-            loadChatMsg(page,"");
+            loadChatMsg(page, "");
         }
     }
 
@@ -305,21 +326,24 @@ public class ProductFragment extends Fragment implements OnclickFragment {
         });
     }
 
-    private void loadChatMsg(int page, String fromdate){
-        aconect.getChatMsg("","",page).enqueue(new Callback<ResultApi<List<SpeakInform>>>() {
+    private void loadChatMsg(int page, String fromdate) {
+        Date d = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        String s = simpleDateFormat.format(d);
+        s=s.replace("/18/","/16/");
+        aconect.getChatMsg("07d6003d-43a8-46a4-a382-3f9f2c1f93d9", s, page).enqueue(new Callback<ResultApi<List<ChatIt>>>() {
             @Override
-            public void onResponse(Call<ResultApi<List<SpeakInform>>> call, Response<ResultApi<List<SpeakInform>>> response) {
-
+            public void onResponse(Call<ResultApi<List<ChatIt>>> call, Response<ResultApi<List<ChatIt>>> response) {
                 if (response.body() != null) {
                     ResultApi rss = response.body();
                     if (rss.status > 0 && rss.data != null) {
-                        cl.setContent((List<SpeakInform>) rss.data);
+                        cl.setContent((List<ChatIt>) rss.data);
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<ResultApi<List<SpeakInform>>> call, Throwable t) {
+            public void onFailure(Call<ResultApi<List<ChatIt>>> call, Throwable t) {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -1,6 +1,5 @@
 package com.aln.phonesaleschain.model.speaknotice;
 
-import com.aln.phonesaleschain.customview.ItemVariable;
 import com.aln.phonesaleschain.customview.MyVariable;
 
 public class SpeakInform implements MyVariable {
@@ -25,7 +24,7 @@ public class SpeakInform implements MyVariable {
 
     @Override
     public String getLabel() {
-        return NoticeName;
+        return ContentMsg;
     }
 
     @Override

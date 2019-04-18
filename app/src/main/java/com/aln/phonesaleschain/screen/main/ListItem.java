@@ -39,7 +39,7 @@ public class ListItem extends AppCompatActivity implements ProductFragment.OnPro
         else if(l.equals("present"))
             fragList = PresentFragment.newInstance(l, null);
         else if(l.equals("chat"))
-            fragList = ProductFragment.newInstance(l,GridLayoutManager.VERTICAL);
+            fragList = ProductFragment.newInstance(l,GridLayoutManager.VERTICAL,1);
         else
             fragList = ProductFragment.newInstance(l, GridLayoutManager.VERTICAL);
 

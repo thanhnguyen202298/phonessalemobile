@@ -1,6 +1,7 @@
 package com.aln.phonesaleschain.datahelper.webapi;
 
 import com.aln.phonesaleschain.gps.CurrentPosition;
+import com.aln.phonesaleschain.model.ChatIt;
 import com.aln.phonesaleschain.model.HistoryTrackingResponse;
 import com.aln.phonesaleschain.model.ResponseLastPositionModel;
 import com.aln.phonesaleschain.model.ResponseSavePosition;
@@ -57,7 +58,7 @@ public interface PathApi {
     Call<ResultApi<List<SpeakInform>>> getSpeakInform(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate, @Query("page") int page);
 
     @GET("/api/getChatMsg")
-    Call<ResultApi<List<SpeakInform>>> getChatMsg(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("page") int page);
+    Call<ResultApi<List<ChatIt>>> getChatMsg(@Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("page") int page);
 
     @GET("/api/getSchadule")
     Call<ResultApi<List<Schadule>>> getSchadule(@Query("page") int page, @Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);

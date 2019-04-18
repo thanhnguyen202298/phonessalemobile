@@ -162,16 +162,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
                 }
             });
 
-        } else if (oj instanceof SpeakInform) {
-            final SpeakInform spk = (SpeakInform) oj;
-            itemHolder.getLayoutBind().setVariable(idVar, spk);
-            itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener.OnClickBrandy(spk);
-                }
-            });
-
         } else if (oj instanceof Schadule) {
             final Schadule scd = (Schadule) oj;
             itemHolder.getLayoutBind().setVariable(idVar, scd);
@@ -206,9 +196,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         } else if (oj instanceof ChatIt) {
             ChatLayoutBinding vb = (ChatLayoutBinding) itemHolder.getLayoutBind();
             final ChatIt chat = (ChatIt) oj;
-            boolean isgo = (chat.text == null || chat.text.equals(""));
+            boolean isgo = chat.getLabel() != null;
+            vb.setChatcontent(chat);
             setShow(vb.msgcome, !isgo);
             setShow(vb.msggo, isgo);
+        } else if (oj instanceof SpeakInform) {
+            final SpeakInform spk = (SpeakInform) oj;
+            itemHolder.getLayoutBind().setVariable(idVar, spk);
+            itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.OnClickBrandy(spk);
+                }
+            });
+
         }
     }
 

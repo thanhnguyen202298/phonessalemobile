@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="chatcontent"
-            type="com.aln.phonesaleschain.model.ChatIt"/>
+            type="com.aln.phonesaleschain.model.ChatIt" />
     </data>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/chat_margin_parent">
 
-    <TextView
-        android:id="@+id/msgcome"
-        android:layout_alignParentLeft="true"
-        android:textAlignment="textStart"
-        android:text="@{chatcontent.text}"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/chat_margin_item"
-        android:background="@drawable/background_border_chat"/>
+        android:layout_margin="5dp"
+        android:paddingTop="8dp">
 
-    <TextView
-        android:id="@+id/msggo"
-        android:layout_alignParentRight="true"
-        android:textAlignment="textEnd"
-        android:text="@{chatcontent.title}"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/chat_margin_item"
-        android:background="@drawable/background_border_chatgo"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/msgcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/background_border_chat"
+            android:maxWidth="240dp"
+            android:padding="8dp"
+            android:text="@{chatcontent.Replying}"
+            android:textColor="#ffffff"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/msggo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_border_chatgo"
+                android:gravity="end"
+                android:maxWidth="240dp"
+                android:padding="8dp"
+                android:text="@{chatcontent.ContentMsg}" />
+        </LinearLayout>
+    </RelativeLayout>
 </layout>
