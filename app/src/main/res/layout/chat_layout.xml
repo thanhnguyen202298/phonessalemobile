@@ -20,31 +20,26 @@
             android:id="@+id/msgcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginRight="8dp"
             android:background="@drawable/background_border_chat"
             android:maxWidth="240dp"
             android:padding="8dp"
-            android:text="@{chatcontent.Replying}"
-            android:textColor="#ffffff"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"/>
+            android:text="@{chatcontent.Replying}" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/msggo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true">
+            android:background="@drawable/background_border_chatgo"
+            android:gravity="end"
+            android:maxWidth="240dp"
+            android:padding="8dp"
+            android:text="@{chatcontent.ContentMsg}" />
 
-            <TextView
-                android:id="@+id/msggo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_border_chatgo"
-                android:gravity="end"
-                android:maxWidth="240dp"
-                android:padding="8dp"
-                android:text="@{chatcontent.ContentMsg}" />
-        </LinearLayout>
     </RelativeLayout>
 </layout>

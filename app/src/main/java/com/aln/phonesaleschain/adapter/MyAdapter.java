@@ -196,7 +196,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemHolder> implem
         } else if (oj instanceof ChatIt) {
             ChatLayoutBinding vb = (ChatLayoutBinding) itemHolder.getLayoutBind();
             final ChatIt chat = (ChatIt) oj;
-            boolean isgo = chat.getLabel() != null;
+            boolean isgo = (chat.getLabel() != null && !chat.getLabel().equals(""));
             vb.setChatcontent(chat);
             setShow(vb.msgcome, !isgo);
             setShow(vb.msggo, isgo);
