@@ -30,7 +30,7 @@ public class LoginPresenter extends TiPresenter<LoginView> implements LoginListe
     protected void onAttachView(@NonNull LoginView view) {
         super.onAttachView(view);
         inView = view;
-        if (usnfo == null) {
+        if (usnfo.getUser() == null) {
             onLoginError("vui lòng đăng nhập");
         } else
             interator.Login(usnfo.getUser(), usnfo.getPass(), this);

@@ -32,24 +32,9 @@ public class HomeActivity extends TiActivity<LoginPresenter,LoginView> implement
 
     @Override
     public void navigateToHome(UserInfo userInfo) {
-        if (userInfo.GroupID == 1 || userInfo.GroupID == 2) {
             Intent navigateToAdminPage = new Intent(HomeActivity.this, MainActivity.class);
-            navigateToAdminPage.putExtra("Name", userInfo.EmployeeName);
-            navigateToAdminPage.putExtra("Depart", userInfo.DivisionName);
-            navigateToAdminPage.putExtra("Empcode", userInfo.EmployeeCode);
             startActivity(navigateToAdminPage);
             finish();
-        } else {
-            //check with group id # 1 & 2
-//            WakeServiceSSk.onWWake(HomeActivity.this, userInfo.EmployeeCode);
-            Intent navigateToUser = new Intent(HomeActivity.this, MainActivity.class);
-            navigateToUser.putExtra("Name", userInfo.EmployeeName);
-            navigateToUser.putExtra("Depart", userInfo.DivisionName);
-            navigateToUser.putExtra("Empcode", userInfo.EmployeeCode);
-            navigateToUser.putExtra("Role", "" + userInfo.GroupID);
-            startActivity(navigateToUser);
-            finish();
-        }
     }
 
     @Override
