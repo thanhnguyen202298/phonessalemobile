@@ -17,6 +17,7 @@ import com.aln.phonesaleschain.screen.home.model.UserInfo;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -24,6 +25,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface PathApi {
+
+    //<editor-fold desc="retrieve data">
+
     @GET("/api/getproduct")
     Call<ResultApi<List<Product>>> getProduction(@Query("page") int page, @Query("allorid") String idall);
 
@@ -62,4 +66,39 @@ public interface PathApi {
 
     @GET("/api/getSchadule")
     Call<ResultApi<List<Schadule>>> getSchadule(@Query("page") int page, @Query("allorid") String idall, @Query("fromdate") String fromdate, @Query("todate") String todate);
+
+    //</editor-fold>
+
+    //<editor-fold desc="insert & update data">
+
+    @POST("saveProduct")
+    Call<ResultApi> saveProduct(@Body Product product);
+
+
+    @POST("savePromotion")
+    Call<ResultApi> savePromotion(@Body Promotion product);
+
+    @POST("saveSchadule")
+    Call<ResultApi> saveSchadule(@Body Promotion product);
+
+    @POST("saveOrder")
+    Call<ResultApi> saveOrder(@Body Product product);
+
+    @POST("saveNotice")
+    Call<ResultApi> saveNotice(@Body Product product);
+
+    @POST("saveChat")
+    Call<ResultApi> saveChat(@Body Product product);
+
+
+    @POST("saveBrand")
+    Call<ResultApi> saveBrand(@Body Product product);
+
+
+    @POST("saveuser")
+    Call<ResultApi> saveuser(@Body Product product);
+
+
+
+    //</editor-fold>
 }
