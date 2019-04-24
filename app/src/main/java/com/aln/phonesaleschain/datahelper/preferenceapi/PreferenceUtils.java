@@ -20,32 +20,6 @@ public class PreferenceUtils {
         return prefs;
     }
 
-    public static boolean savePassword(String password) {
-        saveContent(Constants.KEY_PASSWORD, password);
-        return true;
-    }
-
-    public static String getPassword() {
-        return getContent(Constants.KEY_PASSWORD);
-    }
-
-    public static boolean saveUserName(String username) {
-        saveContent(Constants.KEY_TEN, username);
-        return true;
-    }
-
-    public static String getUserName() {
-        return getContent(Constants.KEY_TEN);
-    }
-
-    public static boolean saveEmployeeCode(String employeeCode) {
-        saveContent(Constants.KEY_MA, employeeCode);
-        return true;
-    }
-
-    public static String getEmployeeCode() {
-        return getContent(Constants.KEY_MA);
-    }
 
     public static boolean saveUser(String UserInfo) {
         saveContent(Constants.KEY_USER, UserInfo);

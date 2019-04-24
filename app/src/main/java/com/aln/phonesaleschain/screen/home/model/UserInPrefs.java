@@ -3,23 +3,22 @@ package com.aln.phonesaleschain.screen.home.model;
 import android.content.Context;
 
 import com.aln.phonesaleschain.datahelper.preferenceapi.PreferenceUtils;
+import com.aln.phonesaleschain.utilities.UtilBasic;
 
 public class UserInPrefs implements UserLogin{
-    public String user;
-    public String pass;
+    public UserInfo user;
 
     public UserInPrefs(Context context){
         PreferenceUtils.getSharesPrefer(context);
-        user = PreferenceUtils.getUserName();
-        pass = PreferenceUtils.getPassword();
+        user = UtilBasic.getGs().fromJson(PreferenceUtils.getUser(),UserInfo.class);
     }
     @Override
     public String getUser() {
-        return user;
+        return user.UserName;
     }
 
     @Override
     public String getPass() {
-        return pass;
+        return user.Pass;
     }
 }

@@ -70,9 +70,7 @@ public class LoginQLNV extends TiActivity<LoginPresenterQLnv, LoginView> impleme
 
     @Override
     public void navigateToHome(UserInfo userInfo) {
-        if (userInfo.GroupID == 1 || userInfo.GroupID == 2)
             navigationAdminScreen(userInfo);
-        else navigationUserScreen(userInfo);
     }
 
     @Override

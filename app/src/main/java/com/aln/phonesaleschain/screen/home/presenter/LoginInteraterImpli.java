@@ -13,9 +13,12 @@ import retrofit2.Response;
 
 public class LoginInteraterImpli implements LoginInterator {
     @Override
-    public void Login(final String User, final String pass, final LoginListener listener) {
+    public void Login(final String user, final String pass, final LoginListener listener) {
         PathApi mApi = APIUtils.getService();
-        mApi.getStatusLogin(User, pass).enqueue(new Callback<ResultApi<List<UserInfo>>>() {
+        UserInfo u = new UserInfo();
+        u.UserName = user;
+        u.Pass = pass;
+        mApi.getStatusLogin(u).enqueue(new Callback<ResultApi<List<UserInfo>>>() {
             @Override
             public void onResponse(Call<ResultApi<List<UserInfo>>> call, Response<ResultApi<List<UserInfo>>> response) {
 
@@ -23,8 +26,6 @@ public class LoginInteraterImpli implements LoginInterator {
                     ResultApi<List<UserInfo>> usinfo = response.body();
                     if (usinfo.getStatus() > 0 && usinfo.data.size() > 0) {
                         UserInfo m = usinfo.data.get(0);
-                        m.password = pass;
-                        m.sms = User;
                         listener.onLoginSuccess(m);
                     } else listener.onLoginError("không có dữ liệu");
                 } else listener.onLoginError("không có thông tin đăng nhập");

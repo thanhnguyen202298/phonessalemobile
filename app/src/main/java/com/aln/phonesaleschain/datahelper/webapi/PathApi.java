@@ -21,6 +21,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -53,8 +54,7 @@ public interface PathApi {
     Call<ResultApi<List<Brandy>>> getBrand(@Query("page") int page, @Query("allorid") String idall);
 
     @POST("/api/login")
-    @FormUrlEncoded
-    Call<ResultApi<List<UserInfo>>> getStatusLogin(@Field("UserName") String username, @Field("Password") String password);
+    Call<ResultApi<List<UserInfo>>> getStatusLogin(@Body UserInfo user);
 
     //4/4/2019
 

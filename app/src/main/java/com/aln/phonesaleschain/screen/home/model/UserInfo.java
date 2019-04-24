@@ -7,7 +7,9 @@ public class UserInfo
     @SerializedName("UserID")
     public String UserID;
     @SerializedName("UserName")
-    public String sms;
+    public String UserName;
+    @SerializedName("Pass")
+    public String Pass;
     @SerializedName("GroupID")
     public int GroupID;
     @SerializedName("GroupName")
@@ -19,8 +21,6 @@ public class UserInfo
     @SerializedName("DivisionName")
     public String DivisionName;
 
-    public String password;
-
     public boolean isAdmin() {
         return GroupID == 1;
 
@@ -31,15 +31,7 @@ public class UserInfo
 
     private boolean isAdmin;
 
-    public UserInfo(String userID, String sms, int groupID, String groupName, String employeeCode, String employeeName, String divisionName) {
-        UserID = userID;
-        this.sms = sms;
-        GroupID = groupID;
-        GroupName = groupName;
-        EmployeeCode = employeeCode;
-        EmployeeName = employeeName;
-        DivisionName = divisionName;
-    }
+
 
     public UserInfo() {
     }
@@ -52,13 +44,6 @@ public class UserInfo
         UserID = userID;
     }
 
-    public String getSms() {
-        return sms;
-    }
-
-    public void setSms(String sms) {
-        this.sms = sms;
-    }
 
     public int getGroupID() {
         return GroupID;
@@ -100,17 +85,4 @@ public class UserInfo
         EmployeeCode = employeeCode;
     }
 
-    @Override
-    public String toString() {
-        return "DataResultLogin{" +
-                "UserID='" + UserID + '\'' +
-                ", sms='" + sms + '\'' +
-                ", GroupID='" + GroupID + '\'' +
-                ", GroupName='" + GroupName + '\'' +
-                ", EmployeeCode='" + EmployeeCode + '\'' +
-                ", EmployeeName='" + EmployeeName + '\'' +
-                ", DivisionName='" + DivisionName + '\'' +
-                ", isAdmin=" + isAdmin +
-                '}';
-    }
 }
